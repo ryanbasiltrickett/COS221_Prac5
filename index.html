@@ -5,6 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SwimStat</title>
+    <link rel="stylesheet" href="./css/index.css" />
   </head>
-  <body></body>
+  <body id="BodyArea">
+    <div id="Banner">
+      <h1 id="mainHeading">Welcome to SwimStats!</h1>
+      <h3 id="subtitle">A proud product of Team.exe</h3>
+    </div>
+
+    <div id="Mid">
+      <form
+        action="login.php"
+        id="loginDetails"
+        onsubmit="return validateLogin()"
+      >
+        Username:<input type="text" id="username" name="username" /><br /><br />
+        Password:<input type="password" id="password" name="password" /><br />
+        <br />
+        <input type="submit" value="Login" />
+      </form>
+      <p id="errorArea"></p>
+    </div>
+
+    <div id="Footer">
+      <p id="Credits">
+        Brought to you by: u21446131 - Mr. Thomas Blendulf, u21430502 - Miss.
+        Jessica Dixie, u21433811 - Mr. Luke Lawson, u21448150 - Mr. Paul Pilane
+        u21431885, Mr. Ryan Trickett u21535869, Mr. Azola Lukhozi u21488275 and
+        Mr. Simphiwe Nonabe
+      </p>
+    </div>
+
+    <script src="./js/validateLogin.js"></script>
+  </body>
 </html>

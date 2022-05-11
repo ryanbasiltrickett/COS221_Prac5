@@ -1,0 +1,48 @@
+#Banner{
+    background-color: aqua;
+}
+#mainHeading{
+    text-align: center;
+    color:blue;
+    font-size: 300%;
+}
+#subtitle{
+    text-align: center;
+    color: darkblue;
+    font-size: 120%;
+}
+
+#Mid{
+    display: inline-block;
+    vertical-align: middle;
+    height: 400px;
+    align-content: center;
+}
+
+#Footer{
+    background-color: darkblue;
+}
+
+#Credits{
+    font-size: large;
+    text-align: center;
+    color: white;
+}
+
+#BodyArea{
+    background-image: url(../img/SwimmingPool.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0%;
+    margin: auto;
+    text-align: center;
+    background-size: cover;
+}
+
+#LoginDetails{
+    vertical-align: middle;
+}
+
+#errorArea{
+    color : red;
+}
