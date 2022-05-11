@@ -1,0 +1,61 @@
+#Banner{
+    background-color: aqua;
+}
+#mainHeading{
+    text-align: center;
+    color:blue;
+    font-size: 300%;
+}
+#subtitle{
+    text-align: center;
+    color: darkblue;
+    font-size: 120%;
+}
+
+#BodyArea{
+    background-image: url(../img/SwimmingPool.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0%;
+    margin: auto;
+    text-align: center;
+    background-size: cover;
+}
+
+#navArea{
+    text-align: center;
+}
+
+#navQuestion{
+    color: red;
+    text-align: center;
+    font-size: 250%;
+}
+
+#navGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.linkBox{
+    height: 200px;
+    text-align: center;
+    
+}
+
+.link{
+    text-align: center;
+    color:rgb(56, 139, 0);
+    text-decoration: none;
+    font-size: 300%;
+    background-color: aquamarine;
+}
+
+
+.link:hover{
+    text-align: center;
+    color:darkblue;
+    text-decoration: none;
+    font-size: 300%;
+    background-color: red;
+}
