@@ -30,7 +30,7 @@
                 else 
                     echo('<li><a href = "viewstatistics.php" type = "text/html">View Stats</a></li>');
             ?>
-                <li><a href = "php/logout.php">Logout</a></li>
+                <li><a href = "logout.php">Logout</a></li>
             </ul>
         </nav> 
     </div>

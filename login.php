@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SwimStat</title>
-  <link rel="stylesheet" href="./css/logins.css" />
+  <link rel="stylesheet" href="./css/login.css" />
 </head>
 
 <body id="BodyArea">
@@ -33,17 +33,6 @@
             </div>
               
   </div>
-
-  <div id="Footer">
-    <p id="Credits">
-      Brought to you by:<br /> Mr. Thomas Blendulf - u21446131 <br />Miss.
-      Jessica Dixie - u21430502 <br />Mr. Luke Lawson - u21433811 <br />
-      Mr. Paul Pilane - u21448150 <br />Mr. Ryan Trickett - u21431885 <br />
-      Mr. Azola Lukhozi - u21535869 <br />
-      Mr. Simphiwe Nonabe - u21488275
-    </p>
-  </div>
-
   <script src="./js/validateLogin.js"></script>
 </body>
 
