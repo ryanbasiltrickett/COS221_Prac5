@@ -44,5 +44,25 @@ class DBConnection
     }
 
 
+
+
+    // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
+    //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
+    //You can then return the result of this function
+    //For error checking purposes, you can also specify if a request was a failure or success, the client can use the status attribute to decide how to display the data
+    public function createJSONResponse($status, $assocArr)
+    {
+        if ($status == "failure") {
+            $returnJSON = json_encode(["status" => "failure", "timestamp" => time(), "data" => null]);
+            return $returnJSON;
+        } else if ($status = "success") {
+            $returnJSON = json_encode(["status" => "success", "timestamp" => time(), "data" => $assocArr]);
+            return $returnJSON;
+        } else {
+            return null;
+        }
+    }
+
+
     //write functions to query the database and return whatever data here
 }
