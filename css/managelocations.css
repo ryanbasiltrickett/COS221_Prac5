@@ -1,0 +1,13 @@
+#Banner{
+    background-color: aqua;
+}
+#mainHeading{
+    text-align: center;
+    color:blue;
+    font-size: 300%;
+}
+#subtitle{
+    text-align: center;
+    color: darkblue;
+    font-size: 120%;
+}

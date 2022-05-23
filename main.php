@@ -29,19 +29,19 @@
         <br>
         <div id="navGrid">
             <div class="linkBox">
-                <a class="link" href="./manageswimmers.html">Manage swimmers</a>
+                <a class="link" href="./manageswimmers.php">Manage swimmers</a>
             </div>
             <div class="linkBox">
-                <a class="link" href="./managelocations.html">Manage locations</a>
+                <a class="link" href="./managelocations.php">Manage locations</a>
             </div>
             <div class="linkBox">
-                <a class="link" href="./logresults.html">Log results of an event</a>
+                <a class="link" href="./logresults.php">Log results of an event</a>
             </div>
             <div class="linkBox">
-                <a class="link" href="./uploadmedia.html">Upload media</a>
+                <a class="link" href="./uploadmedia.php">Upload media</a>
             </div>
             <div class="linkBox">
-                <a class="link" href="./viewstatistics.html">View statistics</a>
+                <a class="link" href="./viewstatistics.php">View statistics</a>
             </div>
             <div class="linkBox">
                 <a class="link" href="./logout.php">Logout</a>
