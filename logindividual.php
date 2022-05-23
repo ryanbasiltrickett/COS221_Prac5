@@ -6,17 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log results</title>
-    <link rel="stylesheet" href="./css/logresults.css" />
+    <link rel="stylesheet" href="./css/logresult.css" />
 </head>
 
-<?php
-    $_SESSION["page"] = "logpersonal";
-    require_once("php/header.php");
-?>
+<div class="logPersonalResults-image">
+    <?php
+        $_SESSION["page"] = "logindividual";
+        require_once("php/header.php");
+    ?>
+</div>
+
 
 <body>
-    <div class="logPersonalResults-image">
-    </div>
     <div class="credentials">
         <h1>Log Results</h1>
         <h3>Enter result details</h3>
@@ -30,10 +31,10 @@
                 <select name="tournament" id="tournament">
                 </select> <br/>
                 <label>Event: </label>   <br/>
-                <input type="text" placeholder="Enter Event Of Torunament " name="event"> <br/>
+                <input type="text" placeholder="Enter Event Of Tournment " name="event"> <br/>
                 <label>Time: </label>   <br/>
                 <input type="text" id="time" placeholder="mm:ss:mm" name="time"> <br/>
-                <button onclick="addResult()" type="submit">Add</button>   <br/>
+                <button onclick="addResult()" type="submit">Add Results</button>   <br/>
             </form>                
         </div>
     </div>

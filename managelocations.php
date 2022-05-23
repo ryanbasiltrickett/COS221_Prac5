@@ -14,12 +14,10 @@
         <?php
             $_SESSION["page"] = "managelocations";
             require_once("php/header.php");
-        ?>s
+        ?>
     </div>
 
 <body>
-    <div class="manageLocation-image">
-    </div>
     <div class="credentials">
         <h1>Manage Locations</h1>
         <h3>Please use the below to insert or update tournament locations</h3>
