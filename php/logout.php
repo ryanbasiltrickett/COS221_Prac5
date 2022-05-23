@@ -15,6 +15,7 @@
         <h3 id="subtitle">Thank you for using SwimStat!</h3>
     </div>
 
+    This page needs to display a message to the user that they have logged out successfully and also remove all session variables
 </body>
 
 </html>

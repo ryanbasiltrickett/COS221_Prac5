@@ -29,6 +29,10 @@
             input elements to capture a swimmer by name and then update attributes as needed
         </div>
     </div>
+
+
+
+    This page need to allow a user to add swimmers to the DB or update swimmer information based on some name/id. Remember that teams are generated when scores are captured
 </body>
 
 </html>

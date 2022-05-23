@@ -20,6 +20,7 @@
         <h3 id="subtitle">Please use the below to upload media to the database</h3>
     </div>
 
+    This page needs to allow the user to upload media to the database. The task is very vague so you have a lot of freedom for how you want to implement this functionality.
 </body>
 
 </html>

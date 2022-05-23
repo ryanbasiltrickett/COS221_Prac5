@@ -8,6 +8,10 @@
 //You can access your sensitive data via the globals defined in config.php
 //never ever ever ever ever declare your password anywhere other than in config.php and do not ever push config.php to github
 //However, make sure that config.php is in the same directory as this file orderwise the include_once won't work
+
+
+//This file effectively acts as the API. It needs to return the data from the database in a JSON format so that it can be used 
+//populate the web pages 
 include_once("/config.php");
 $GLOBALS["connection"] = null; //this is a global DB connection object, always connect ot the DB via this variable
 class DBConnection
