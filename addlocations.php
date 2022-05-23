@@ -15,7 +15,7 @@
 ?>
 
 <body>
-    <div class="deleteSwimmer-image">
+    <div class="addLocation-image">
     </div>
     <div class="credentials">
         <h1>Add Location</h1>

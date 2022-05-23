@@ -15,9 +15,17 @@
 ?>
 
 <body>
-    <div id="Banner">
-        <h1 id="mainHeading">Upload media</h1>
-        <h3 id="subtitle">Please use the below to upload media to the database</h3>
+    <div class="uploadMedia-image">
+    </div>
+    <div class="credentials">
+        <h1>Upload Media</h1>
+        <h3>Enter the details of the media you wish to upload</h3>
+
+        <div class="container">
+            <form method='POST' action='validate-add.php'>  
+                UPDATE CREDENTIALS!
+            </form>                
+        </div>
     </div>
 
     This page needs to allow the user to upload media to the database. The task is very vague so you have a lot of freedom for how you want to implement this functionality.
