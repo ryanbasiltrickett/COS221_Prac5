@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="./css/managelocations.css" />
 </head>
 
+<?php
+    $_SESSION["page"] = "managelocations";
+    require_once("php/header.php");
+?>
+
 <body>
     <div id="Banner">
         <h1 id="mainHeading">Manage locations</h1>

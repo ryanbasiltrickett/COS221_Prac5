@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="./css/uploadmedia.css" />
 </head>
 
+<?php
+    $_SESSION["page"] = "uploadmedia";
+    require_once("php/header.php");
+?>
+
 <body>
     <div id="Banner">
         <h1 id="mainHeading">Upload media</h1>

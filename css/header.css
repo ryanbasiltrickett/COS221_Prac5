@@ -1,0 +1,72 @@
+.navbar {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.navlogo {
+    float: left;
+    padding: 10px 0;
+    width: 200px;
+    height: 50px;
+}
+
+.navbar .active {
+    color: white;
+}
+
+header {
+    background-color: rgb(57, 182, 255);
+}
+
+header::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+nav {
+    float: right;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li {
+    float: left;
+    margin-left: 70px;
+    padding-top: 27px;
+    position: relative;
+}
+
+nav ul li a {
+    color: rgb(26, 26, 26);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: rgb(0, 0, 0);
+}
+
+nav ul li a:before {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 0%;
+    background-color: rgb(26, 26, 26);
+    position: absolute;
+    top: 0;
+    transition: all ease-in-out 250ms;
+}
+
+nav ul li a:hover::before {
+    width: 100%;
+}
+
+body {
+    margin: 0px;
+}

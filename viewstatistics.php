@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="./css/viewstatistics.css" />
 </head>
 
+<?php
+    $_SESSION["page"] = "viewstatistics";
+    require_once("php/header.php");
+?>
+
 <body>
     <div id="Banner">
         <h1 id="mainHeading">View statistics</h1>

@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="./css/manageswimmers.css" />
 </head>
 
+<?php
+    $_SESSION["page"] = "manageswimmers";
+    require_once("php/header.php");
+?>
+
 <body>
     <div id="Banner">
         <h1 id="mainHeading">Manage swimmers</h1>
