@@ -9,17 +9,14 @@
     <link rel="stylesheet" href="./css/manageswimmers.css" />
 </head>
 
-
-
-<body>
-
-    <div class="updateSwimmer-image">
-    <?php
-    $_SESSION["page"] = "manageswimmers";
+<?php
+    $_SESSION["page"] = "updateswimmers";
     require_once("php/header.php");
 ?>
-    </div>
 
+<body>
+    <div class="updateSwimmer-image">
+    </div>
     <div class="credentials">
             <h1>Update swimmers</h1>
             <h3>Enter the updated credentials of the swimmer</h3>

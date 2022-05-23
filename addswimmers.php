@@ -9,17 +9,14 @@
     <link rel="stylesheet" href="./css/manageswimmers.css" />
 </head>
 
-
-
-<body>
-
-    <div class="addSwimmer-image">
-    <?php
-    $_SESSION["page"] = "manageswimmers";
+<?php
+    $_SESSION["page"] = "addswimmers";
     require_once("php/header.php");
 ?>
-    </div>
 
+<body>
+    <div class="addSwimmer-image">
+    </div>
     <div class="credentials">
             <h1>Add swimmers</h1>
             <h3>Enter the new swimmers details</h3>

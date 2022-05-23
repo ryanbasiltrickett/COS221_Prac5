@@ -5,11 +5,6 @@
     box-sizing: border-box;
 }
 
-
-#Footer{
-    background-color: darkblue;
-}
-
 #Credits{
     font-size: large;
     text-align: center;
@@ -77,7 +72,7 @@
 
 .credentials button {
     cursor:pointer;
-    background-color: rgb(0, 89, 255);
+    background-color: rgb(0, 60, 255);
     width: 15%;  
     color: rgb(255, 255, 255);   
     padding: 15px;   
