@@ -25,4 +25,8 @@
 
 </body>
 
+<?php
+    require_once("php/footer.php");
+?>
+
 </html>
