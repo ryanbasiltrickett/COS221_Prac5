@@ -9,30 +9,35 @@
     <link rel="stylesheet" href="./css/manageswimmers.css" />
 </head>
 
-<?php
-    $_SESSION["page"] = "manageswimmers";
-    require_once("php/header.php");
-?>
+    <div class="manageSwimmer-image">
+        <?php
+        $_SESSION["page"] = "manageswimmers";
+        require_once("php/header.php");
+        ?>
+    </div>
 
 <body>
-    <div id="Banner">
-        <h1 id="mainHeading">Manage swimmers</h1>
-        <h3 id="subtitle">Please use the below to insert or update individual swimmers</h3>
-    </div>
-    <div id="gridArea">
-        <div id="addSwimmerBlock">
-            <form action="">
-                input elements to capture details of new swimmer
-            </form>
-        </div>
-        <div id="updateSwimmerBlock">
-            input elements to capture a swimmer by name and then update attributes as needed
-        </div>
-    </div>
 
+        <div class="credentials">
+            <h1>Manage swimmers</h1>
+            <h3>Please use the below to insert, update or delete individual swimmers</h3>
 
+            <div id="main-buttons">
+            <a href="addswimmers.php"> <button id = "addSwimmer" type="button">Add Swimmer</button></a>
+            <a href="updateswimmers.php"> <button id = "updateSwimmer" type="button">Update Swimmer</button></a>
+            <a href="deleteswimmers.php"> <button id = "deleteSwimmer" type="button">Delete Swimmer</button></a>
+            </div>
+            
+
+        </div>
+              
+
+    </div>
 
     This page need to allow a user to add swimmers to the DB or update swimmer information based on some name/id. Remember that teams are generated when scores are captured
+
+    
+
 </body>
 
 </html>
