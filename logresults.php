@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="./css/logresults.css" />
 </head>
 
+<?php
+    $_SESSION["page"] = "logresults";
+    require_once("php/header.php");
+?>
+
 <body>
     <div id="Banner">
         <h1 id="mainHeading">Log Results</h1>
