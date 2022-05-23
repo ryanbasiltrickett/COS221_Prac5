@@ -15,6 +15,8 @@
         <h3 id="subtitle">Register a SwimStat account below</h3>
     </div>
 
+
+    This page needs to capture data to create a new user account, after successful registration redirect to the index page so they can login and use the site
 </body>
 
 </html>
