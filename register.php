@@ -15,7 +15,15 @@
         <h3 id="subtitle">Register a SwimStat account below</h3>
     </div>
 
+    <div>
+        Username:<input type="text" id="username"><br>
+        Password:<input type="password" id="password"><br>
+        <button onclick="registerUser()">Register</button>
+    </div>
+    <p id="errorArea"></p>
 
+
+    <script src="./js/register.js"></script>
     This page needs to capture data to create a new user account, after successful registration redirect to the index page so they can login and use the site
 </body>
 

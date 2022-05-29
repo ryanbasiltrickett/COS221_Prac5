@@ -28,7 +28,7 @@
         <button onclick="validateLogin()">Login</button> <br />
     </div>
     <p id="errorArea"></p>
-    <button id="registerButton">Register an account</button>
+    <button id="registerButton" onclick="goToRegister()">Register an account</button>
 
   </div>
 

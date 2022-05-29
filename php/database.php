@@ -65,6 +65,21 @@ class DBConnection
         }
     }
 
+    public function registerUser($username, $password)
+    {
+        $query = "INSERT INTO login_credentials (Username, Password)";
+        $query = $query . 'VALUES ("' . $username . '", "' . $password . '")';
+
+        $success = $GLOBALS["connection"]->query($query);
+        if ($success) {
+            $temp = $this->createJSONResponse("success", null);
+            return $temp;
+        } else {
+            $temp = $this->createJSONResponse("failure", null);
+            return $temp;
+        }
+    }
+
 
 
 
@@ -96,6 +111,9 @@ class DBConnection
         $function = $params["function"];
         if ($function == "login") {
             $temp = $this->verifyLogin($params["username"], $params["password"]);
+            echo $temp;
+        } else if ($function == "register") {
+            $temp = $this->registerUser($params["username"], $params["password"]);
             echo $temp;
         } else {
             echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);
