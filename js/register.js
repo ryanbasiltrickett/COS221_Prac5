@@ -1,8 +1,14 @@
 function registerUser(){
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
+    var confirm = document.getElementById("confirm").value;
 
     var error = document.getElementById("errorArea");
+
+    if (password != confirm){
+        error.innerText = "Passwords do not match";
+        return;
+    }
 
 
     const xhttp = new XMLHttpRequest();

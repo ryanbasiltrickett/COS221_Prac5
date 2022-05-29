@@ -15,9 +15,11 @@
         <h3 id="subtitle">Register a SwimStat account below</h3>
     </div>
 
+
     <div>
-        Username:<input type="text" id="username"><br>
-        Password:<input type="password" id="password"><br>
+        Username:<input type="text" id="username" required><br>
+        Password:<input type="password" id="password" required><br>
+        Confirm password:<input type="password" id="confirm" required><br>
         <button onclick="registerUser()">Register</button>
     </div>
     <p id="errorArea"></p>

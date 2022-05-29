@@ -44,6 +44,13 @@ class DBConnection
 
 
 
+    //You can use these functions as examples as how to query the DB and format a response
+
+    //Please note the following conventions:
+    //  If you do not need to return data to the front end, simply indicate if the response has a status success or failure
+    //  If you must return data, use the 'data' attribute in the json response
+
+
     public function verifyLogin($username, $password)
     {
         $query = "SELECT Password FROM login_credentials WHERE Username='$username'";
@@ -65,6 +72,7 @@ class DBConnection
         }
     }
 
+    //You can use these functions as examples as how to query the DB and format a response
     public function registerUser($username, $password)
     {
         $query = "INSERT INTO login_credentials (Username, Password)";
