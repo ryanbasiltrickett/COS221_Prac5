@@ -10,13 +10,15 @@
 </head>
 
 <body>
-    <div id="Banner">
-        <h1 id="mainHeading">Logout</h1>
-        <h3 id="subtitle">Thank you for using SwimStat!</h3>
+    <div class="index-image">
+        <div class="content">
+            <h1>Thank you for using SwimStat!</h1>
+
+        </div>
     </div>
 
 
-    This page needs to display a message to the user that they have logged out successfully.
+
     <?php
     //This removes the session
     session_start();
