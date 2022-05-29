@@ -51,6 +51,7 @@ class DBConnection
     //  If you must return data, use the 'data' attribute in the json response
 
 
+    //This function also sets session variable for login if successful
     public function verifyLogin($username, $password)
     {
         $query = "SELECT Password FROM login_credentials WHERE Username='$username'";
@@ -60,6 +61,9 @@ class DBConnection
             $row = $result->fetch_assoc();
             $flag = $password == $row["Password"];
             if ($flag) {
+                session_start();
+                $_SESSION["loggedIn"] = true;
+                $_SESSION["page"] = "";
                 $temp = $this->createJSONResponse("success", null);
                 return $temp;
             } else {

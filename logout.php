@@ -15,7 +15,13 @@
         <h3 id="subtitle">Thank you for using SwimStat!</h3>
     </div>
 
-    This page needs to display a message to the user that they have logged out successfully and also remove all session variables
+
+    This page needs to display a message to the user that they have logged out successfully.
+    <?php
+    //This removes the session
+    session_start();
+    session_destroy();
+    ?>
 </body>
 
 </html>
