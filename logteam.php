@@ -11,6 +11,7 @@
 
 <div class="logTeamResults-image">
     <?php
+        session_start();
         $_SESSION["page"] = "logteam";
         require_once("php/header.php");
     ?>

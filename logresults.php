@@ -11,6 +11,7 @@
 
 <div class="logResults-image">
     <?php
+        session_start();
         $_SESSION["page"] = "logresults";
         require_once("php/header.php");
     ?>

@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="./css/manageswimmers.css" />
 </head>
 
-<?php
-    $_SESSION["page"] = "deleteswimmers";
-    require_once("php/header.php");
-?>
+<div class="deleteSwimmer-image">
+    <?php
+        session_start();
+        $_SESSION["page"] = "deleteswimmers";
+        require_once("php/header.php");
+    ?>
+</div>
 
 <body>
-    <div class="deleteSwimmer-image">
-    </div>
     <div class="credentials">
         <h1>Delete Swimmers</h1>
         <h3>Choose the swimmer to be deleted</h3>

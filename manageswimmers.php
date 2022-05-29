@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="./css/manageswimmers.css" />
 </head>
 
-
-<?php
-$_SESSION["page"] = "manageswimmers";
-require_once("php/header.php");
-?>
+<div class="manageSwimmer-image">
+    <?php
+        session_start();
+        $_SESSION["page"] = "manageswimmers";
+        require_once("php/header.php");
+    ?>
+</div>
 
 <body>
-    <div class="manageSwimmer-image">
-    </div>
     <div class="credentials">
         <h1>Manage Swimmers</h1>
         <h3>Please use the below to insert, update or delete individual swimmers</h3>

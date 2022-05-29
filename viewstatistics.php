@@ -10,6 +10,7 @@
 </head>
 
 <?php
+    session_start();
     $_SESSION["page"] = "viewstatistics";
     require_once("php/header.php");
 ?>
