@@ -11,7 +11,7 @@
 
 
 
-include_once("/config.php");
+include_once("./config.php");
 $GLOBALS["connection"] = null; //this is a global DB connection object, always connect to the DB via this variable
 class DBConnection
 {

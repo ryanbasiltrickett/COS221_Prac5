@@ -20,17 +20,17 @@
     <h3>Enter your login details</h3>
 
     <div class="container">
-      <form method='POST' onsubmit="return validateLogin()" id="loginDetails">
+      <div' id="loginDetails">
         <label>Username: </label> <br />
-        <input type="text" placeholder="Enter Username" id="username" name="user" required> <br /> <br />
+        <input type="text" placeholder="Enter Username" id="username" name="username" required> <br /> <br />
         <label>Password: </label> <br />
         <input type="password" placeholder="Enter Password" id="password" name="password" required> <br />
-        <button onclick="validateLogin()" type="submit">Login</button> <br />
-      </form>
-      <p id="errorArea"></p>
-      <button id="registerButton">Register an account</button>
-
+        <button onclick="validateLogin()">Login</button> <br />
     </div>
+    <p id="errorArea"></p>
+    <button id="registerButton">Register an account</button>
+
+  </div>
 
   </div>
   <script src="./js/validateLogin.js"></script>
