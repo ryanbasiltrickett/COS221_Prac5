@@ -7,7 +7,7 @@ function validateLogin(){
     var error = document.getElementById("errorArea");
 
     if (username == "" || password == ""){
-        error.innerText = "Username or password not specified";
+        error.innerText = "Username or password not valid";
         return false;
     } else {
         return true;

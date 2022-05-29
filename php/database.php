@@ -10,10 +10,9 @@
 //However, make sure that config.php is in the same directory as this file orderwise the include_once won't work
 
 
-//This file effectively acts as the API. It needs to return the data from the database in a JSON format so that it can be used 
-//populate the web pages 
+
 include_once("/config.php");
-$GLOBALS["connection"] = null; //this is a global DB connection object, always connect ot the DB via this variable
+$GLOBALS["connection"] = null; //this is a global DB connection object, always connect to the DB via this variable
 class DBConnection
 {
     public static function instance()
@@ -45,6 +44,29 @@ class DBConnection
 
 
 
+    public function verifyLogin($username, $password)
+    {
+        $query = "SELECT Password FROM login_credentials WHERE Username='$username'";
+        $result = $GLOBALS["connection"]->query($query);
+        //echo $GLOBALS["connection"]->error;
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $flag = $password == $row["Password"];
+            if ($flag) {
+                $temp = $this->createJSONResponse("success", null);
+                return $temp;
+            } else {
+                $temp = $this->createJSONResponse("failure", null);
+                return $temp;
+            }
+        } else {
+            $temp = $this->createJSONResponse("failure", null);
+            return $temp;
+        }
+    }
+
+
+
 
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
     //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
@@ -64,5 +86,21 @@ class DBConnection
     }
 
 
-    //write functions to query the database and return whatever data here
+    //function receives json request, translates it, then calls the appropriate function using params from json object
+    //the json returned by the individual functions is echo-ed as the response
+    public function processRequest()
+    {
+        $jsonParam = file_get_contents('php://input');
+        $params = json_decode($jsonParam, true);
+
+        $function = $params["function"];
+        if ($function == "login") {
+            $temp = $this->verifyLogin($params["username"], $params["password"]);
+            echo $temp;
+        } else {
+            echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);
+        }
+    }
 }
+
+DBConnection::instance()->processRequest();
