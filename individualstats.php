@@ -16,7 +16,10 @@ require_once("php/header.php");
 ?>
 
 <body>
-    Individual
+    This page will display stats for an individual swimmer. Allow the user to select a swimmer by name and then
+    provide a list of relevant statistics for them (ex: PBs per event).
+
+    Please you the viewstatistics.css file to do your css
 
 </body>
 

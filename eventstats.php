@@ -16,7 +16,10 @@ require_once("php/header.php");
 ?>
 
 <body>
-    Events
+    This page will display stats for an a given events. Allow the user to select an event by name and then
+    provide a list of relevant statistics: for example the 5 fastest swimmers for the event.
+
+    Please you the viewstatistics.css file to do your css
 
 </body>
 
