@@ -53,11 +53,71 @@ button:hover {
     opacity: 0.9;   
 } 
 
+.credentials form input{
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    font-size: 20px;
+}
+
+.credentials {
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    color: azure;
+    display: block;
+    
+}
+
+.credentials form input{
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    font-size: 20px;
+}
+
+.credentials h1{
+    margin-top: 80px;
+    font-size: 70px;
+
+}
+
+.credentials h3{
+    padding-top: 1px;
+    font-size: 21px;
+    color: rgb(0, 60, 255);
+    margin-bottom: 10px ;
+}
+
+.credentials button {
+    cursor:pointer;
+    background-color: rgb(0, 0, 255);
+    width: 60%;  
+    color: rgb(255, 255, 255);   
+    padding: 15px;   
+    margin: 10px 0px;   
+    border: none;   
+}
  
 label {
    color: rgb(255, 255, 255);
    margin: 10px 10px; ;
 }
+
+input{   
+    width: 60%;   
+    margin: 10px 10px;  
+    padding: 12px 30px;   
+    display: inline-block;   
+    border: 20px solid rgb(0, 25, 245);
+    box-sizing: border-box;
+    height: 35px;   
+}  
 
 
 select {
@@ -68,4 +128,11 @@ select {
 
 #page{
     background-color: darkblue;
+}
+
+#resultsArea{
+    position: absolute;
+    display: block;
+    top: 80%;
+    left: 40%;
 }

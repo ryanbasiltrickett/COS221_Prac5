@@ -15,11 +15,47 @@ $_SESSION["page"] = "viewstatistics";
 require_once("php/header.php");
 ?>
 
-<body>
-    This page will display stats for an a given events. Allow the user to select an event by name and then
-    provide a list of relevant statistics: for example the 5 fastest swimmers for the event.
+<body id="page">
 
-    Please you the viewstatistics.css file to do your css
+    <div class="credentials">
+        <h1>View fastest swimmers per event</h1>
+        <h3>Choose an event</h3>
+
+        <div class="container">
+            <form method='POST'>
+                <label>Event: </label> <br />
+                <select name="event" id="event">
+                </select> <br />
+                <button>View</button> <br />
+            </form>
+        </div>
+    </div>
+
+    <div id="resultsArea">
+        <table>
+            <th>
+            <td>Swimmer</td>
+            <td>Time</td>
+            </th>
+            <tr>
+                <td>Dave Sharkfin</td>
+                <td>14:00</td>
+            </tr>
+            <tr>
+                <td>Dave Sharkfin2</td>
+                <td>14:00</td>
+            </tr>
+            <tr>
+                <td>Dave Sharkfin3</td>
+                <td>14:00</td>
+            </tr>
+            <tr>
+                <td>Dave Sharkfin3</td>
+                <td>14:00</td>
+            </tr>
+        </table>
+    </div>
+
 
 </body>
 
