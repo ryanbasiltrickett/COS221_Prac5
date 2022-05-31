@@ -93,6 +93,66 @@ class DBConnection
     }
 
 
+    //Returns a list all events, all attributes - you can use this as an example for how to return data using the API
+    public function getEvents()
+    {
+        $query = "SELECT * FROM swimming_events";
+        $result = $GLOBALS["connection"]->query($query);
+        //echo $GLOBALS["connection"]->error;
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["id"] = $row["Stroke_ID"];
+                $returnArr[$counter]["name"] = $row["Stroke_Name"];
+                $returnArr[$counter]["dist"] = $row["Distance"];
+                $returnArr[$counter]["gender"] = $row["Gender"];
+                $counter++;
+            }
+            $temp = $this->createJSONResponse("success", $returnArr);
+            return $temp;
+        } else {
+            $temp = $this->createJSONResponse("failure", null);
+            return $temp;
+        }
+    }
+
+    public function getTopPerEvent($eventId)
+    {
+        $query = "SELECT s.first_Name AS first, s.last_Name AS last, i.Fastest_Time AS time, e.Gender AS gender 
+        FROM swimmers AS s 
+        INNER JOIN individual_stroke_event_stats AS i 
+        ON s.Swimmer_ID = i.Swimmer_ID 
+        INNER JOIN tournament_event_phases AS t 
+        ON i.Event_Phase_ID = t.Tourn_Event_Phase_ID 
+        INNER JOIN swimming_events AS e 
+        ON t.Stroke_Event_ID = e.Stroke_ID 
+        WHERE e.Stroke_ID = $eventId
+        ORDER BY i.Fastest_Time;";
+
+        $result = $GLOBALS["connection"]->query($query);
+        //echo $GLOBALS["connection"]->error;
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["name"] = $row["first"] . " " . $row["last"];
+                $returnArr[$counter]["time"] = $row["time"];
+                $returnArr[$counter]["gender"] = $row["gender"];
+                $counter++;
+                if ($counter == 5) {
+                    break;
+                }
+            }
+            $temp = $this->createJSONResponse("success", $returnArr);
+            return $temp;
+        } else {
+            $temp = $this->createJSONResponse("failure", null);
+            return $temp;
+        }
+    }
+
+
 
 
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
@@ -126,6 +186,12 @@ class DBConnection
             echo $temp;
         } else if ($function == "register") {
             $temp = $this->registerUser($params["username"], $params["password"]);
+            echo $temp;
+        } else if ($function == "getEvents") {
+            $temp = $this->getEvents();
+            echo $temp;
+        } else if ($function == "getTopForEvent") {
+            $temp = $this->getTopPerEvent($params["eventId"]);
             echo $temp;
         } else {
             echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);

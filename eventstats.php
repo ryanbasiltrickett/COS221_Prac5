@@ -22,21 +22,21 @@ require_once("php/header.php");
         <h3>Choose an event</h3>
 
         <div class="container">
-            <form method='POST'>
-                <label>Event: </label> <br />
-                <select name="event" id="event">
-                </select> <br />
-                <button>View</button> <br />
-            </form>
+
+            <label>Event: </label> <br />
+            <select name="event" id="events">
+            </select> <br />
+            <button onclick="getTopFive()">View</button> <br />
+
         </div>
     </div>
 
     <div id="resultsArea">
         <table>
-            <th>
-            <td>Swimmer</td>
-            <td>Time</td>
-            </th>
+            <tr>
+                <th>Swimmer</th>
+                <th>Time</th>
+            </tr>
             <tr>
                 <td>Dave Sharkfin</td>
                 <td>14:00</td>
@@ -56,7 +56,7 @@ require_once("php/header.php");
         </table>
     </div>
 
-
+    <script src="./js/eventstats.js"></script>
 </body>
 
 </html>
