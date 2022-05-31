@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="./css/viewstatistics.css" />
 </head>
 
+
 <?php
 session_start();
 $_SESSION["page"] = "viewstatistics";
 require_once("php/header.php");
 ?>
+
 
 <body id="page">
 
@@ -32,29 +34,62 @@ require_once("php/header.php");
     </div>
 
     <div id="resultsArea">
-        <table>
-            <tr>
-                <th>Swimmer</th>
-                <th>Time</th>
-            </tr>
-            <tr>
-                <td>Dave Sharkfin</td>
-                <td>14:00</td>
-            </tr>
-            <tr>
-                <td>Dave Sharkfin2</td>
-                <td>14:00</td>
-            </tr>
-            <tr>
-                <td>Dave Sharkfin3</td>
-                <td>14:00</td>
-            </tr>
-            <tr>
-                <td>Dave Sharkfin3</td>
-                <td>14:00</td>
-            </tr>
-        </table>
+        <div class="gridCell">
+            <p class="gridTitle">Rank</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridTitle">Swimmer</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridTitle">Time</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">1</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">Dave Davidson</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">00:40:38</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">2</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">Dave Davidson</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">00:40:38</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">3</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">Dave Davidson</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">00:40:38</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">4</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">Dave Davidson</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">00:40:38</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">5</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">Dave Davidson</p>
+        </div>
+        <div class="gridCell">
+            <p class="gridContent">00:40:38</p>
+        </div>
     </div>
+
 
     <script src="./js/eventstats.js"></script>
 </body>

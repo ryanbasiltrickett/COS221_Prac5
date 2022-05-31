@@ -1,4 +1,5 @@
 function getTopFive(){
+    clearTable();
     //gets the top 5 swimmers/times for a certain event
     const xhttp = new XMLHttpRequest();
 
@@ -8,10 +9,29 @@ function getTopFive(){
          console.log(data);
  
          if (data.status == "success"){
-             var swimmers = data.data;
+            var swimmers = data.data;
+            document.getElementById("resultsArea").style.display = "grid";
+            var cells = document.getElementsByClassName("gridCell");
+            var contents = document.getElementsByClassName("gridContent");
+            cells[0].style.display = "block";
+            cells[1].style.display = "block";
+            cells[2].style.display = "block";
+
+            var counter = 3;
+            var rank = 1;
+            var contentCounter = 0;
+            for (let swimmer of swimmers){
+                cells[counter++].style.display = "block";
+                cells[counter++].style.display = "block";
+                cells[counter++].style.display = "block";
+                contents[contentCounter++].innerText = rank++;
+                contents[contentCounter++].innerText = swimmer.name;
+                contents[contentCounter++].innerText = swimmer.time;
+            }
             console.log(swimmers);
          } else {
-            console.log("No data found for this event");
+            document.getElementById("resultsArea").style.display = "none";
+            alert("No data found for this event");
          }
      }
 
@@ -59,6 +79,19 @@ function getEvents(){
     
     xhttp.open("POST", "./php/database.php", false);
     xhttp.send(strParams);
+}
+
+function clearTable(){
+    var cells = document.getElementsByClassName("gridCell");
+    var contents = document.getElementsByClassName("gridContent");
+
+    for (let cell of cells){
+        cell.style.display = "none";
+    }
+
+    for (let content of contents){
+        content.innerText = "";
+    }
 }
 
 getEvents();
