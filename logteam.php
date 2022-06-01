@@ -5,20 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log results</title>
+    <title>Log Results</title>
     <link rel="stylesheet" href="./css/logresult.css" />
+    <script src="js/logresults.js"></script>
 </head>
 
 <div class="logTeamResults-image">
     <?php
-    session_start();
-    $_SESSION["page"] = "logteam";
-    require_once("php/header.php");
+        session_start();
+        $_SESSION["page"] = "logteam";
+        require_once("php/header.php");
     ?>
 </div>
 
 
-<body>
+<body onLoad="loadTeamPage()">
     <!-- this is a test comment -->
     <div class="credentials">
         <h1>Log Results</h1>
