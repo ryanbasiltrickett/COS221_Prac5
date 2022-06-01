@@ -5,3 +5,4 @@ $GLOBALS["username"] = "";
 $GLOBALS["password"] = "";
 $GLOBALS["databaseName"] = "sportsdb";
 $GLOBALS["host"] = "127.0.0.1";
+?>
