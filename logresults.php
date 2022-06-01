@@ -11,9 +11,9 @@
 
 <div class="logResults-image">
     <?php
-        session_start();
-        $_SESSION["page"] = "logresults";
-        require_once("php/header.php");
+    session_start();
+    $_SESSION["page"] = "logresults";
+    require_once("php/header.php");
     ?>
 </div>
 
@@ -25,9 +25,12 @@
         <h3>Please log results for individual swimmers or team</h3>
 
         <div id="main-buttons">
-            <a href="logindividual.php"> <button id = "logPersonal" type="button">Individual Swimmer</button></a> <br>
-            <a href="logteam.php"> <button id = "logTeam" type="button">Team</button></a>
+            <a href="logindividual.php"> <button id="logPersonal" type="button">Individual Swimmer</button></a> <br>
+            <a href="logteam.php"> <button id="logTeam" type="button">Team</button></a>
         </div>
+    </div>
+    <div id="test">
+        This is a test
     </div>
 </body>
 
