@@ -11,6 +11,7 @@
 
 <div class="uploadMedia-image">
     <?php
+        session_start();
         $_SESSION["page"] = "uploadmedia";
         require_once("php/header.php");
     ?>

@@ -12,6 +12,7 @@
 
     <div class="manageLocation-image">
         <?php
+            session_start();
             $_SESSION["page"] = "managelocations";
             require_once("php/header.php");
         ?>

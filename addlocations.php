@@ -11,6 +11,7 @@
 
 <div class="updateLocation-image">
     <?php
+        session_start();
         $_SESSION["page"] = "updateswimmers";
         require_once("php/header.php");
     ?>

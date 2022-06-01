@@ -16,6 +16,16 @@
     </div>
 
 
+    <div>
+        Username:<input type="text" id="username" required><br>
+        Password:<input type="password" id="password" required><br>
+        Confirm password:<input type="password" id="confirm" required><br>
+        <button onclick="registerUser()">Register</button>
+    </div>
+    <p id="errorArea"></p>
+
+
+    <script src="./js/register.js"></script>
     This page needs to capture data to create a new user account, after successful registration redirect to the index page so they can login and use the site
 </body>
 

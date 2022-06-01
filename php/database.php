@@ -10,10 +10,9 @@
 //However, make sure that config.php is in the same directory as this file orderwise the include_once won't work
 
 
-//This file effectively acts as the API. It needs to return the data from the database in a JSON format so that it can be used 
-//populate the web pages 
-include_once("/config.php");
-$GLOBALS["connection"] = null; //this is a global DB connection object, always connect ot the DB via this variable
+
+include_once("./config.php");
+$GLOBALS["connection"] = null; //this is a global DB connection object, always connect to the DB via this variable
 class DBConnection
 {
     public static function instance()
@@ -45,6 +44,116 @@ class DBConnection
 
 
 
+    //You can use these functions as examples as how to query the DB and format a response
+
+    //Please note the following conventions:
+    //  If you do not need to return data to the front end, simply indicate if the response has a status success or failure
+    //  If you must return data, use the 'data' attribute in the json response
+
+
+    //This function also sets session variable for login if successful
+    public function verifyLogin($username, $password)
+    {
+        $query = "SELECT Password FROM login_credentials WHERE Username='$username'";
+        $result = $GLOBALS["connection"]->query($query);
+        //echo $GLOBALS["connection"]->error;
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $flag = $password == $row["Password"];
+            if ($flag) {
+                session_start();
+                $_SESSION["loggedIn"] = true;
+                $_SESSION["page"] = "";
+                $temp = $this->createJSONResponse("success", null);
+                return $temp;
+            } else {
+                $temp = $this->createJSONResponse("failure", null);
+                return $temp;
+            }
+        } else {
+            $temp = $this->createJSONResponse("failure", null);
+            return $temp;
+        }
+    }
+
+    //You can use these functions as examples as how to query the DB and format a response
+    public function registerUser($username, $password)
+    {
+        $query = "INSERT INTO login_credentials (Username, Password)";
+        $query = $query . 'VALUES ("' . $username . '", "' . $password . '")';
+
+        $success = $GLOBALS["connection"]->query($query);
+        if ($success) {
+            $temp = $this->createJSONResponse("success", null);
+            return $temp;
+        } else {
+            $temp = $this->createJSONResponse("failure", null);
+            return $temp;
+        }
+    }
+
+
+    //Returns a list all events, all attributes - you can use this as an example for how to return data using the API
+    public function getEvents()
+    {
+        $query = "SELECT * FROM swimming_events";
+        $result = $GLOBALS["connection"]->query($query);
+        //echo $GLOBALS["connection"]->error;
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["id"] = $row["Stroke_ID"];
+                $returnArr[$counter]["name"] = $row["Stroke_Name"];
+                $returnArr[$counter]["dist"] = $row["Distance"];
+                $returnArr[$counter]["gender"] = $row["Gender"];
+                $counter++;
+            }
+            $temp = $this->createJSONResponse("success", $returnArr);
+            return $temp;
+        } else {
+            $temp = $this->createJSONResponse("failure", null);
+            return $temp;
+        }
+    }
+
+    public function getTopPerEvent($eventId)
+    {
+        $query = "SELECT s.first_Name AS first, s.last_Name AS last, i.Fastest_Time AS time, e.Gender AS gender 
+        FROM swimmers AS s 
+        INNER JOIN individual_stroke_event_stats AS i 
+        ON s.Swimmer_ID = i.Swimmer_ID 
+        INNER JOIN tournament_event_phases AS t 
+        ON i.Event_Phase_ID = t.Tourn_Event_Phase_ID 
+        INNER JOIN swimming_events AS e 
+        ON t.Stroke_Event_ID = e.Stroke_ID 
+        WHERE e.Stroke_ID = $eventId
+        ORDER BY i.Fastest_Time;";
+
+        $result = $GLOBALS["connection"]->query($query);
+        //echo $GLOBALS["connection"]->error;
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["name"] = $row["first"] . " " . $row["last"];
+                $returnArr[$counter]["time"] = $row["time"];
+                $returnArr[$counter]["gender"] = $row["gender"];
+                $counter++;
+                if ($counter == 5) {
+                    break;
+                }
+            }
+            $temp = $this->createJSONResponse("success", $returnArr);
+            return $temp;
+        } else {
+            $temp = $this->createJSONResponse("failure", null);
+            return $temp;
+        }
+    }
+
+
+
 
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
     //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
@@ -64,5 +173,30 @@ class DBConnection
     }
 
 
-    //write functions to query the database and return whatever data here
+    //function receives json request, translates it, then calls the appropriate function using params from json object
+    //the json returned by the individual functions is echo-ed as the response
+    public function processRequest()
+    {
+        $jsonParam = file_get_contents('php://input');
+        $params = json_decode($jsonParam, true);
+
+        $function = $params["function"];
+        if ($function == "login") {
+            $temp = $this->verifyLogin($params["username"], $params["password"]);
+            echo $temp;
+        } else if ($function == "register") {
+            $temp = $this->registerUser($params["username"], $params["password"]);
+            echo $temp;
+        } else if ($function == "getEvents") {
+            $temp = $this->getEvents();
+            echo $temp;
+        } else if ($function == "getTopForEvent") {
+            $temp = $this->getTopPerEvent($params["eventId"]);
+            echo $temp;
+        } else {
+            echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);
+        }
+    }
 }
+
+DBConnection::instance()->processRequest();
