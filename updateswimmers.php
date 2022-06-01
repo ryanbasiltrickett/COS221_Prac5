@@ -18,13 +18,13 @@
     ?>
 </div>
 
-<body onLoad="loadSwimmers()">
+<body onLoad="loadUpdate()">
     <div class="credentials">
             <h1>Update Swimmers</h1>
             <h3>Enter the updated credentials of the swimmer</h3>
 
             <div class="container">
-                <form method='POST' action='validate-update.php'>  
+                <form>  
                     <label>Swimmer: </label> <br/>
                     <select name="swimmer" id="swimmer" onChange="loadDetails()">
                     </select> <br/>

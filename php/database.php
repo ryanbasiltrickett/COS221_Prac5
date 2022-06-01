@@ -212,6 +212,45 @@ class DBConnection
         }
     }
 
+    //Adds a swimmer to the database
+    public function addSwimmer($first, $mid, $last, $id)
+    {
+        if ($mid == "")
+            $query = "INSERT into swimmers
+                      (first_Name, last_Name, id_Num)
+                      VALUES('$first', '$last', $id)";
+        else
+            $query = "INSERT into swimmers
+                      (first_Name, middle_Name, last_Name, id_Num)
+                      VALUES('$first', $mid, '$last', $id)";
+                  
+        if ($GLOBALS["connection"]->query($query) === true) {            
+            return $this->createJSONResponse("success", null);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
+    //Updates swimmer details
+    public function updateSwimmer($first, $mid, $last, $id, $swimmerId)
+    {
+        if ($mid == "")
+            $query = "UPDATE swimmers
+                      SET first_Name = '$first', middle_Name = NULL, last_Name = '$last', id_Num = '$id'
+                      WHERE Swimmer_Id = $swimmerId;";
+        else
+            $query = "UPDATE swimmers
+                      SET first_Name = '$first', middle_Name = '$mid', last_Name = '$last', id_Num = '$id'
+                      WHERE Swimmer_Id = $swimmerId;";
+                  
+        if ($GLOBALS["connection"]->query($query) === true) {            
+            return $this->createJSONResponse("success", null);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
 
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
     //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
@@ -259,6 +298,12 @@ class DBConnection
             echo $temp;
         } else if ($function == "deleteSwimmer") {
             $temp = $this->deleteSwimmer($params["swimmerId"]);
+            echo $temp;
+        } else if ($function == "addSwimmer") {
+            $temp = $this->addSwimmer($params["first"], $params["mid"], $params["last"], $params["id"]);
+            echo $temp;
+        } else if ($function == "updateSwimmer") {
+            $temp = $this->updateSwimmer($params["first"], $params["mid"], $params["last"], $params["id"], $params["swimmerId"]);
             echo $temp;
         } else {
             echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);
