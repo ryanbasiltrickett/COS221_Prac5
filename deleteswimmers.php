@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage swimmers</title>
     <link rel="stylesheet" href="./css/manageswimmers.css" />
+    <script src="js/manageswimmers.js"></script>
 </head>
 
 <div class="deleteSwimmer-image">
@@ -17,17 +18,17 @@
     ?>
 </div>
 
-<body>
+<body onLoad="loadSwimmers()">
     <div class="credentials">
         <h1>Delete Swimmers</h1>
         <h3>Choose the swimmer to be deleted</h3>
 
         <div class="container">
-            <form method='POST' action='validate-add.php'>  
+            <form>  
                 <label>Swimmer: </label> <br/>
                 <select name="swimmer" id="swimmer">
                 </select> <br/>
-                <button onclick="deleteSwimmer()" type="submit">Delete</button>   <br/>
+                <button onclick="deleteSwimmer()" type="submit">Delete</button><br/>
             </form>                
         </div>
     </div>

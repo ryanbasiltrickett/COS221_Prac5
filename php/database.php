@@ -11,7 +11,7 @@
 
 
 
-include_once("./config.php");
+include_once("config.php");
 $GLOBALS["connection"] = null; //this is a global DB connection object, always connect to the DB via this variable
 class DBConnection
 {
@@ -152,7 +152,65 @@ class DBConnection
         }
     }
 
+    //Returns all swimmers who are currently active in the database
+    public function getAllSwimmers()
+    {
+        $query = "SELECT Swimmer_Id, id_Num, first_Name, middle_Name, last_Name
+                  FROM swimmers
+                  WHERE Active = true;";
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["swimmer_id"] = $row["Swimmer_Id"];
+                $returnArr[$counter]["name"] = $row["first_Name"] . " " . $row["last_Name"];
+                $returnArr[$counter]["id"] = $row["id_Num"];
+                $counter++;
+            }
+            return $this->createJSONResponse("success", $returnArr);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
 
+    //Returns swimmer details by id
+    public function getSwimmerDetails($id)
+    {
+        $query = "SELECT id_Num, first_Name, middle_Name, last_Name
+                  FROM swimmers
+                  WHERE Swimmer_Id = $id;";
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $returnArr = [];
+            $returnArr[0]["first"] = $row["first_Name"];
+            $returnArr[0]["mid"] =$row["middle_Name"];
+            $returnArr[0]["last"] = $row["last_Name"];
+            $returnArr[0]["id"] = $row["id_Num"];
+            
+            return $this->createJSONResponse("success", $returnArr);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
+    //Sets swimmer to inactive
+    public function deleteSwimmer($id)
+    {
+        $query = "UPDATE swimmers
+                  SET Active = false
+                  WHERE Swimmer_Id = $id;";
+                  
+        if ($GLOBALS["connection"]->query($query) === true) {            
+            return $this->createJSONResponse("success", null);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
 
 
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
@@ -192,6 +250,15 @@ class DBConnection
             echo $temp;
         } else if ($function == "getTopForEvent") {
             $temp = $this->getTopPerEvent($params["eventId"]);
+            echo $temp;
+        } else if ($function == "getAllSwimmers") {
+            $temp = $this->getAllSwimmers();
+            echo $temp;
+        } else if ($function == "getSwimmerDetails") {
+            $temp = $this->getSwimmerDetails($params["swimmerId"]);
+            echo $temp;
+        } else if ($function == "deleteSwimmer") {
+            $temp = $this->deleteSwimmer($params["swimmerId"]);
             echo $temp;
         } else {
             echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);
