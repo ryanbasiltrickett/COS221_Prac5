@@ -339,6 +339,27 @@ class DBConnection
         }
     }
 
+    public function getSwimmersPB($swimmerId)
+    {
+        $query = "SELECT personal_best_individual.Time, swimming_events.Stroke_Name
+        FROM personal_best_individual, swimming_events
+        WHERE personal_best_individual.Swimmer_ID=".$swimmerId." AND personal_best_individual.StrokePB_ID=swimming_events.Stroke_ID;";
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["Time"] = $row["Time"];
+                $returnArr[$counter]["Stroke_Name"] = $row["Stroke_Name"];
+                $counter++;
+            }
+            return $this->createJSONResponse("success", $returnArr);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
     //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
     //You can then return the result of this function
@@ -401,7 +422,10 @@ class DBConnection
         } else if ($function == "updateLocation") {
             $temp = $this->updateLocation($params["timezone"], $params["latitude"], $params["longitude"], $params["country_code"]);
             echo $temp;
-        } 
+        } else if ($function == "getSwimmerPB") {
+            $temp = $this->getSwimmersPB($params["swimmerId"]);
+            echo $temp;
+        }
         else {
             echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);
         }
