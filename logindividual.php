@@ -36,7 +36,7 @@
                 <input type="text" placeholder="Enter Event Of Tournment " name="event"> <br/>
                 <label>Time: </label>   <br/>
                 <input type="text" id="time" placeholder="mm:ss:mm" name="time"> <br/>
-                <button onclick="addResult()" type="submit">Add Results</button>   <br/>
+                <button onclick="addIndividualResult()" type="submit">Add Results</button>   <br/>
             </form>                
         </div>
     </div>

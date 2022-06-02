@@ -7,6 +7,7 @@ function loadIndividualPage()
 function loadTeamPage()
 {
     loadTeamSwimmers();
+    loadTournaments();
 }
 
 function loadSwimmers(){
@@ -73,5 +74,29 @@ function loadTeamSwimmers(){
 
 function loadTournaments()
 {
-    //still to implement
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function(){
+        var data = JSON.parse(this.response);
+
+        if (data.status == "success"){
+            tournamentSelect = document.getElementById("tournament");
+            inner = "";
+            for (i = 0; i < data.data.length; i++)
+            {
+                inner += '<option value="' + data.data[i].tournament_id + '">' + data.data[i].name + '</option>';
+            }
+
+            tournamentSelect.innerHTML = inner;
+        }
+    }
+
+    params = {
+        "function": "getAllTournaments"
+    };
+    
+    strParams = JSON.stringify(params);
+    
+    xhttp.open("POST", "./php/database.php", false);
+    xhttp.send(strParams);
 }

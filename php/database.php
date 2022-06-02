@@ -252,6 +252,27 @@ class DBConnection
         }
     }
 
+    //Returns all tournaments
+    public function getAllTournaments()
+    {
+        $query = "SELECT Tournament_Id, Name
+                  FROM tournament;";
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["tournament_id"] = $row["Tournament_Id"];
+                $returnArr[$counter]["name"] = $row["Name"];
+                $counter++;
+            }
+            return $this->createJSONResponse("success", $returnArr);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
     //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
     //You can then return the result of this function
@@ -304,6 +325,9 @@ class DBConnection
             echo $temp;
         } else if ($function == "updateSwimmer") {
             $temp = $this->updateSwimmer($params["first"], $params["mid"], $params["last"], $params["id"], $params["swimmerId"]);
+            echo $temp;
+        } else if ($function == "getAllTournaments") {
+            $temp = $this->getAllTournaments();
             echo $temp;
         } else {
             echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);
