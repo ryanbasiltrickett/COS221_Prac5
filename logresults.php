@@ -29,9 +29,6 @@
             <a href="logteam.php"> <button id="logTeam" type="button">Team</button></a>
         </div>
     </div>
-    <div id="test">
-        This is a test
-    </div>
 </body>
 
 </html>
