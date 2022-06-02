@@ -43,6 +43,7 @@ function loadDetails(){
             document.getElementById("mname").value = data.data[0].mid;
             document.getElementById("lname").value = data.data[0].last;
             document.getElementById("id").value = data.data[0].id;
+            document.getElementById("date").value = data.data[0].dob;
         }
         else {
             alert("Error occured when obtaining swimmer's details");
@@ -64,7 +65,6 @@ function deleteSwimmer(){
     const xhttp = new XMLHttpRequest();
 
     xhttp.onload = function(){
-        alert(this.response);
         var data = JSON.parse(this.response);
 
         if (data.status == "success"){
@@ -93,10 +93,10 @@ function addSwimmer()
     mid = document.getElementById("mname").value.trim();
     last = document.getElementById("lname").value.trim();
     id = document.getElementById("id").value.trim();
-    country = document.getElementById("country").value.trim();
     dob = document.getElementById("date").value;
 
-    if (fname == "" || last == "" || id == "" || country == "" || dob == "")
+
+    if (fname == "" || last == "" || id == "" || dob == "")
         return;
 
     const xhttp = new XMLHttpRequest();
@@ -108,7 +108,7 @@ function addSwimmer()
             alert("Swimmer added successfully");
         }
         else {
-            alert("Error occured when deleting swimmer");
+            alert("Error occured when adding swimmer");
         }
     }
 
@@ -118,7 +118,6 @@ function addSwimmer()
         "mid" : mid,
         "last" : last,
         "id" : id,
-        "country" : country,
         "dob" : dob
     };
     
@@ -134,10 +133,9 @@ function updateSwimmer()
     mid = document.getElementById("mname").value.trim();
     last = document.getElementById("lname").value.trim();
     id = document.getElementById("id").value.trim();
-    country = document.getElementById("country").value.trim();
     dob = document.getElementById("date").value;
 
-    if (fname == "" || last == "" || id == "" || country == "" || dob == "")
+    if (fname == "" || last == "" || id == "" || dob == "")
         return;
 
     const xhttp = new XMLHttpRequest();
@@ -161,7 +159,6 @@ function updateSwimmer()
         "mid" : mid,
         "last" : last,
         "id" : id,
-        "country" : country,
         "dob" : dob
     };
     

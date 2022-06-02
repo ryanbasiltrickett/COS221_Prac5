@@ -33,11 +33,9 @@
                 <input type="text" placeholder="Enter Swimmer Last Name" name="lname" required id="lname"> <br/>
                 <label>ID Number: </label> <br/>
                 <input type="text" placeholder="Enter Swimmer ID Number" name="id" required id="id">  <br/>
-                <label>Country: </label>   <br/>
-                <input type="text" placeholder="Enter Country Of Swimmer " name="country" id="country"> <br/>
                 <label>Date of Birth: </label>   <br/>
                 <input type="date" id="date" placeholder="dd-mm-yyyy" min="1973-01-01" max="2003-12-31" name="date"> <br/>
-                <button onclick="addSwimmer()" type="submit">Update</button>   <br/>
+                <button onclick="addSwimmer()" type="submit">Add</button>   <br/>
             </form>                  
         </div>
     </div>

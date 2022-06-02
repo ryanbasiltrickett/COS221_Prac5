@@ -96,7 +96,7 @@ class DBConnection
     //Returns a list all events, all attributes - you can use this as an example for how to return data using the API
     public function getEvents()
     {
-        $query = "SELECT * FROM swimming_events";
+        $query = "SELECT * FROM swimming_events ORDER BY Stroke_Name, Distance, Gender;";
         $result = $GLOBALS["connection"]->query($query);
         //echo $GLOBALS["connection"]->error;
         if ($result->num_rows > 0) {
@@ -155,15 +155,16 @@ class DBConnection
     //Returns all swimmers who are currently active in the database
     public function getAllSwimmers()
     {
-        $query = "SELECT Swimmer_Id, id_Num, first_Name, middle_Name, last_Name
+        $query = "SELECT Swimmer_ID, id_Num, first_Name, middle_Name, last_Name
                   FROM swimmers
-                  WHERE Active = true;";
+                  WHERE Active = true
+                  ORDER BY last_Name, first_Name;";
         $result = $GLOBALS["connection"]->query($query);
         if ($result->num_rows > 0) {
             $returnArr = [];
             $counter = 0;
             while ($row = $result->fetch_assoc()) {
-                $returnArr[$counter]["swimmer_id"] = $row["Swimmer_Id"];
+                $returnArr[$counter]["swimmer_id"] = $row["Swimmer_ID"];
                 $returnArr[$counter]["name"] = $row["first_Name"] . " " . $row["last_Name"];
                 $returnArr[$counter]["id"] = $row["id_Num"];
                 $counter++;
@@ -178,9 +179,9 @@ class DBConnection
     //Returns swimmer details by id
     public function getSwimmerDetails($id)
     {
-        $query = "SELECT id_Num, first_Name, middle_Name, last_Name
-                  FROM swimmers
-                  WHERE Swimmer_Id = $id;";
+        $query = "SELECT id_Num, first_Name, middle_Name, last_Name, birth_date
+                  FROM swimmers, persons
+                  WHERE Swimmer_ID = $id AND swimmers.Person_Id = persons.id;";
         $result = $GLOBALS["connection"]->query($query);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
@@ -189,6 +190,7 @@ class DBConnection
             $returnArr[0]["mid"] =$row["middle_Name"];
             $returnArr[0]["last"] = $row["last_Name"];
             $returnArr[0]["id"] = $row["id_Num"];
+            $returnArr[0]["dob"] = $row["birth_date"];
             
             return $this->createJSONResponse("success", $returnArr);
         }
@@ -202,7 +204,7 @@ class DBConnection
     {
         $query = "UPDATE swimmers
                   SET Active = false
-                  WHERE Swimmer_Id = $id;";
+                  WHERE Swimmer_ID = $id;";
                   
         if ($GLOBALS["connection"]->query($query) === true) {            
             return $this->createJSONResponse("success", null);
@@ -213,19 +215,33 @@ class DBConnection
     }
 
     //Adds a swimmer to the database
-    public function addSwimmer($first, $mid, $last, $id)
+    public function addSwimmer($first, $mid, $last, $id, $dob)
     {
-        if ($mid == "")
-            $query = "INSERT into swimmers
-                      (first_Name, last_Name, id_Num)
-                      VALUES('$first', '$last', $id)";
-        else
-            $query = "INSERT into swimmers
-                      (first_Name, middle_Name, last_Name, id_Num)
-                      VALUES('$first', $mid, '$last', $id)";
-                  
-        if ($GLOBALS["connection"]->query($query) === true) {            
-            return $this->createJSONResponse("success", null);
+        $personKey = "swimmer.stats.com-p." . rand(100,10000);
+
+        $query = "INSERT into persons
+                  (person_key, publisher_id, birth_date)
+                  VALUES('$personKey', 1, '$dob');";
+
+        if ($GLOBALS["connection"]->query($query) === true) {
+            
+            $personId = $GLOBALS["connection"]->insert_id;
+            
+            if ($mid == "")
+                $query = "INSERT into swimmers
+                        (Person_Id, first_Name, last_Name, id_Num)
+                        VALUES($personId, '$first', '$last', $id)";
+            else
+                $query = "INSERT into swimmers
+                        (Person_Id, first_Name, middle_Name, last_Name, id_Num)
+                        VALUES($personId, '$first', '$mid', '$last', $id)";
+                    
+            if ($GLOBALS["connection"]->query($query) === true) {            
+                return $this->createJSONResponse("success", null);
+            }
+            else {
+                return $this->createJSONResponse("failure", null);
+            }
         }
         else {
             return $this->createJSONResponse("failure", null);
@@ -233,19 +249,38 @@ class DBConnection
     }
 
     //Updates swimmer details
-    public function updateSwimmer($first, $mid, $last, $id, $swimmerId)
+    public function updateSwimmer($first, $mid, $last, $id, $swimmerId, $dob)
     {
         if ($mid == "")
             $query = "UPDATE swimmers
                       SET first_Name = '$first', middle_Name = NULL, last_Name = '$last', id_Num = '$id'
-                      WHERE Swimmer_Id = $swimmerId;";
+                      WHERE Swimmer_ID = $swimmerId;";
         else
             $query = "UPDATE swimmers
                       SET first_Name = '$first', middle_Name = '$mid', last_Name = '$last', id_Num = '$id'
-                      WHERE Swimmer_Id = $swimmerId;";
+                      WHERE Swimmer_ID = $swimmerId;";
                   
-        if ($GLOBALS["connection"]->query($query) === true) {            
-            return $this->createJSONResponse("success", null);
+        if ($GLOBALS["connection"]->query($query) === true) {
+            $query = "SELECT Person_Id
+                      FROM swimmers
+                      WHERE Swimmer_ID = $swimmerId;";
+
+            $result = $GLOBALS["connection"]->query($query);
+            if ($result->num_rows > 0) {
+                $personId = $result->fetch_assoc()["Person_Id"];
+
+                $query = "UPDATE persons
+                      SET birth_date = '$dob'
+                      WHERE id = $personId;";
+                
+                if ($GLOBALS["connection"]->query($query) === true)        
+                    return $this->createJSONResponse("success", null);
+                else
+                    return $this->createJSONResponse("failure", null);
+            }
+            else {
+                return $this->createJSONResponse("failure", null);
+            }
         }
         else {
             return $this->createJSONResponse("failure", null);
@@ -256,7 +291,8 @@ class DBConnection
     public function getAllTournaments()
     {
         $query = "SELECT Tournament_Id, Name
-                  FROM tournament;";
+                  FROM tournament
+                  ORDER BY Name;";
         $result = $GLOBALS["connection"]->query($query);
         if ($result->num_rows > 0) {
             $returnArr = [];
@@ -321,10 +357,10 @@ class DBConnection
             $temp = $this->deleteSwimmer($params["swimmerId"]);
             echo $temp;
         } else if ($function == "addSwimmer") {
-            $temp = $this->addSwimmer($params["first"], $params["mid"], $params["last"], $params["id"]);
+            $temp = $this->addSwimmer($params["first"], $params["mid"], $params["last"], $params["id"], $params["dob"]);
             echo $temp;
         } else if ($function == "updateSwimmer") {
-            $temp = $this->updateSwimmer($params["first"], $params["mid"], $params["last"], $params["id"], $params["swimmerId"]);
+            $temp = $this->updateSwimmer($params["first"], $params["mid"], $params["last"], $params["id"], $params["swimmerId"], $params["dob"]);
             echo $temp;
         } else if ($function == "getAllTournaments") {
             $temp = $this->getAllTournaments();
