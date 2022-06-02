@@ -2,12 +2,14 @@ function loadIndividualPage()
 {
     loadSwimmers();
     loadTournaments();
+    loadEvents();
 }
 
 function loadTeamPage()
 {
     loadTeamSwimmers();
     loadTournaments();
+    loadEvents();
 }
 
 function loadSwimmers(){
@@ -93,6 +95,39 @@ function loadTournaments()
 
     params = {
         "function": "getAllTournaments"
+    };
+    
+    strParams = JSON.stringify(params);
+    
+    xhttp.open("POST", "./php/database.php", false);
+    xhttp.send(strParams);
+}
+
+function loadEvents(){
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function(){
+        
+         var data = JSON.parse(this.response);
+ 
+         if (data.status == "success"){
+            let events = data.data;
+            eventsDropDown = document.getElementById("event");
+            for (let event of events){
+                eventOption = document.createElement("option");
+                eventOption.value = event.id;
+
+                var fullName = event.dist +"m "+event.name+" ("+event.gender+")";
+                eventOption.text = fullName;
+                eventsDropDown.appendChild(eventOption);
+            }
+         } else {
+            console.log("Could not retrieve event data");
+         }
+     }
+
+     params = {
+        "function": "getEvents"
     };
     
     strParams = JSON.stringify(params);

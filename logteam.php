@@ -20,7 +20,6 @@
 
 
 <body onLoad="loadTeamPage()">
-    <!-- this is a test comment -->
     <div class="credentials">
         <h1>Log Results</h1>
         <h3>Enter result details</h3>
@@ -42,8 +41,11 @@
                 <label>Tournment: </label> <br />
                 <select name="tournament" id="tournament">
                 </select> <br />
-                <label>Event: </label> <br />
-                <input type="text" placeholder="Enter Event Of Tournament " name="event"> <br />
+                <label>Event: </label>   <br/>
+                <select name="event" id="event">
+                </select> <br/>
+                <label>Event Phase: </label>   <br/>
+                <input type="text" placeholder="Enter Event Phase Of Tournment " name="event"> <br/>
                 <label>Time: </label> <br />
                 <input type="text" id="time" placeholder="mm:ss:mm" name="time"> <br />
                 <button onclick="addTeamResult()" type="submit">Add Results</button> <br />

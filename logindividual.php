@@ -33,16 +33,16 @@
                 <select name="tournament" id="tournament">
                 </select> <br/>
                 <label>Event: </label>   <br/>
-                <input type="text" placeholder="Enter Event Of Tournment " name="event"> <br/>
+                <select name="event" id="event">
+                </select> <br/>
+                <label>Event Phase: </label>   <br/>
+                <input type="text" placeholder="Enter Event Phase Of Tournment " name="event"> <br/>
                 <label>Time: </label>   <br/>
                 <input type="text" id="time" placeholder="mm:ss:mm" name="time"> <br/>
                 <button onclick="addIndividualResult()" type="submit">Add Results</button>   <br/>
             </form>                
         </div>
     </div>
-
-    This page needs to be able to captire the following: You need to be able to specify a tournament, event, swimmer name (or id) and their time, when doing the insert, you also needs to detect if this time is a PB for the specific stroke.
-
 </body>
 
 </html>
