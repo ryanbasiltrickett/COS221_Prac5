@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Location</title>
     <link rel="stylesheet" href="./css/managelocation.css" />
+    <script src="js/managelocations.js"></script>
 </head>
 
 <div class="updateLocation-image">

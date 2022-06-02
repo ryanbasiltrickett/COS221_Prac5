@@ -309,6 +309,36 @@ class DBConnection
         }
     }
 
+    //Adds a location to the database
+    public function addLocation($timezone, $latitude, $longitude, $country_code)
+    {
+
+        $query = "INSERT INTO `locations`(`timezone`, `latitude`, `longitude`, `country_code`) 
+                VALUES (' " . $timezone . " ',' " . $latitude . " ',' " . $longitude . " ',' " . $country_code . "');";
+
+        if ($GLOBALS["connection"]->query($query) === true) {
+
+            return $this->createJSONResponse("success", null);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
+    public function updateLocation($timezone, $latitude, $longitude, $country_code)
+    {
+
+        $query = "";
+
+        if ($GLOBALS["connection"]->query($query) === true) {
+
+            return $this->createJSONResponse("success", null);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
     //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
     //You can then return the result of this function
@@ -365,7 +395,14 @@ class DBConnection
         } else if ($function == "getAllTournaments") {
             $temp = $this->getAllTournaments();
             echo $temp;
-        } else {
+        } else if ($function == "addLocation") {
+            $temp = $this->addLocation($params["timezone"], $params["latitude"], $params["longitude"], $params["country_code"]);
+            echo $temp;
+        } else if ($function == "updateLocation") {
+            $temp = $this->updateLocation($params["timezone"], $params["latitude"], $params["longitude"], $params["country_code"]);
+            echo $temp;
+        } 
+        else {
             echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);
         }
     }
