@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View statistics</title>
     <link rel="stylesheet" href="./css/viewstatistics.css" />
+    <script src="js/individualstats.js"></script>
 </head>
 
 <?php
@@ -15,12 +16,26 @@ $_SESSION["page"] = "viewstatistics";
 require_once("php/header.php");
 ?>
 
-<body>
-    This page will display stats for an individual swimmer. Allow the user to select a swimmer by name and then
-    provide a list of relevant statistics for them (ex: PBs per event).
-
-    Please you the viewstatistics.css file to do your css
-
+<body onLoad="loadUpdate()">
+<div class="individualStats-image">
+        <h1>Review Statistics For An Individual Swimmer</h1>
+        <div id="swimmerStats">
+            <label>Swimmer: </label> 
+        
+        <select name="swimmer" id="swimmer" onChange="loadPB()">
+        </select>
+        <br/>
+        <br/>
+        <br/>
+        <label id="pbLabel"> </label> <br/>
+        <table id ="PBs">
+        
+        </table>
+        <label id="eventLabel"> </label> <br/>
+        <table id ="events">
+        
+        </table>
+    </div>
 </body>
 
 </html>

@@ -14,7 +14,8 @@
 <body>
   <div class="index-image">
     <div class="content">
-      <h1>Welcome to SwimStats!</h1>
+      <h1>Welcome to</h1>
+      <img src="img/logo_1.png" alt="Project Logo" class="logo">
       <h3>A proud product of Team.exe</h3>
 
       <a href="login.php"> <button type="button">Enter</button></a>

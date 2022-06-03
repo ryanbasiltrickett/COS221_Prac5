@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View statistics</title>
     <link rel="stylesheet" href="./css/viewstatistics.css" />
+    <script src="js/tournamentstats.js"></script>
 </head>
 
 <?php
@@ -15,11 +16,22 @@ $_SESSION["page"] = "viewstatistics";
 require_once("php/header.php");
 ?>
 
-<body>
-    This page will display stats for an entire tournament. Allow the user to select a tournament by name and then
-    provide a list relevant stats like who won what event, what events took place etc.
+<body onLoad="loadUpdate()">
+    <div class="tournStats-image">
+        <h1>Review Tournament Statistics</h1>
+        <div id="tournStats">
+        <label>Tournament: </label> 
+        <select name="tournament" id="tournament" onChange="loadTournamentStats()"></select>
+        <br/>
+        <br/>
+        <br/>
 
-    Please you the viewstatistics.css file to do your css
+        <label id="tournStatLabel"> </label> <br/>
+
+        <table id="tournamentStats">
+                
+        </table>
+    </div>
 
 </body>
 

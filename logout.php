@@ -12,13 +12,11 @@
 <body>
     <div class="index-image">
         <div class="content">
-            <h1>Thank you for using SwimStat!</h1>
-
+            <h1>Thank you for using Swim Stats!</h1>
+            <img src="img/logo_1.png" alt="Project Logo" class="logo">
         </div>
     </div>
-
-
-
+    
     <?php
     //This removes the session
     session_start();

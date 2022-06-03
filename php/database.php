@@ -413,6 +413,85 @@ class DBConnection
         }
     }
 
+    public function getSwimmersPB($swimmerId)
+    {
+        $query = "SELECT personal_best_individual.Time, swimming_events.Stroke_Name, swimming_events.Distance
+        FROM personal_best_individual, swimming_events
+        WHERE personal_best_individual.Swimmer_ID=".$swimmerId." AND personal_best_individual.StrokePB_ID=swimming_events.Stroke_ID;";
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["Time"] = $row["Time"];
+                $returnArr[$counter]["Stroke_Name"] = $row["Stroke_Name"];
+                $returnArr[$counter]["Distance"] = $row["Distance"];
+                $counter++;
+            }
+            return $this->createJSONResponse("success", $returnArr);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
+    public function getSwimmerEvents($swimmerId)
+    {
+        
+        $query = "SELECT individual_stroke_event_stats.Time, swimming_events.Stroke_Name , tournament.Name, tournament_event_phases.Classification, swimming_events.Distance
+        FROM swimming_events,tournament, individual_stroke_event_stats INNER JOIN tournament_event_phases ON individual_stroke_event_stats.Event_Phase_ID =tournament_event_phases.Tourn_Event_Phase_ID
+        WHERE tournament.Tournament_ID= tournament_event_phases.Tournament_ID AND individual_stroke_event_stats.Swimmer_ID=".$swimmerId." AND tournament_event_phases.Stroke_Event_ID=swimming_events.Stroke_ID;";
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["Classification"] = $row["Classification"];
+                $returnArr[$counter]["Name"] = $row["Name"];
+                $returnArr[$counter]["Time"] = $row["Time"];
+                $returnArr[$counter]["Stroke_Name"] = $row["Stroke_Name"];
+                $returnArr[$counter]["Distance"] = $row["Distance"];
+                $counter++;
+            }
+            return $this->createJSONResponse("success", $returnArr);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
+    public function getTournamentEvents($tournamentId)
+    {
+        
+        $query = "SELECT swimming_events.Stroke_Name, swimming_events.Distance,  tournament_event_phases.Date, tournament_event_phases.Classification , swimmers.first_Name,swimmers.middle_Name,swimmers.last_Name,MIN(individual_stroke_event_stats.Time) AS Time
+        FROM swimming_events,individual_stroke_event_stats, swimmers, tournament INNER JOIN tournament_event_phases ON tournament.Tournament_ID =tournament_event_phases.Tournament_ID
+        WHERE tournament.Tournament_ID=".$tournamentId." AND individual_stroke_event_stats.Event_Phase_ID=tournament_event_phases.Tourn_Event_Phase_ID AND swimming_events.Stroke_ID=tournament_event_phases.Stroke_Event_ID AND individual_stroke_event_stats.Swimmer_ID=swimmers.Swimmer_ID
+        GROUP BY individual_stroke_event_stats.Event_Phase_ID
+        ORDER BY individual_stroke_event_stats.Time";
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                if(isset($row["middle_Name"])){
+                    $returnArr[$counter]["Name"] = $row["first_Name"]." ".$row["middle_Name"]." ".$row["last_Name"];
+                }else{
+                    $returnArr[$counter]["Name"] = $row["first_Name"]." ".$row["last_Name"];
+                }
+                $returnArr[$counter]["Date"] = $row["Date"];
+                $returnArr[$counter]["Classification"] = $row["Classification"];
+                $returnArr[$counter]["Distance"] = $row["Distance"];
+                $returnArr[$counter]["Time"] = $row["Time"];
+                $returnArr[$counter]["Stroke_Name"] = $row["Stroke_Name"];
+                $counter++;
+            }
+            return $this->createJSONResponse("success", $returnArr);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
     //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
     //You can then return the result of this function
@@ -475,8 +554,7 @@ class DBConnection
         } else if ($function == "updateLocation") {
             $temp = $this->updateLocation($params["timezone"], $params["latitude"], $params["longitude"], $params["country_code"], $params["location_name"], $params["id"]);
             echo $temp;
-        } 
-        else if ($function == "getAllLocations") {
+        } else if ($function == "getAllLocations") {
             $temp = $this->getAllLocations();
             echo $temp;
         } else if ($function == "getLocationDetails") {
@@ -485,7 +563,19 @@ class DBConnection
         } else if ($function == "uploadMedia") {
             $temp = $this->uploadMedia($params["id"], $params["image"]);
             echo $temp;
-        } else {
+        } else if ($function == "getSwimmerPB") {
+            $temp = $this->getSwimmersPB($params["swimmerId"]);
+            echo $temp;
+        }
+        else if ($function == "getSwimmerEvents") {
+            $temp = $this->getSwimmerEvents($params["swimmerId"]);
+            echo $temp;
+        }
+        else if ($function == "getTournamentEvents") {
+            $temp = $this->getTournamentEvents($params["tournamentId"]);
+            echo $temp;
+        }
+        else {
             echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);
         }
     }
@@ -493,3 +583,4 @@ class DBConnection
 }
 
 DBConnection::instance()->processRequest();
+?>

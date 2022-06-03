@@ -6,8 +6,8 @@
 .navlogo {
     float: left;
     padding: 10px 0;
-    width: 200px;
-    height: 50px;
+    width: 250px;
+    height: 60px;
 }
 
 .navbar .active {
@@ -37,7 +37,7 @@ nav ul {
 nav li {
     float: left;
     margin-left: 70px;
-    padding-top: 27px;
+    padding-top: 33px;
     position: relative;
 }
 
@@ -46,6 +46,7 @@ nav ul li a {
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
+    font-size: large;
 }
 
 nav ul li a:hover {
