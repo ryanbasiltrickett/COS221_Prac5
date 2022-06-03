@@ -310,7 +310,7 @@ class DBConnection
     }
 
     //Adds a location to the database
-    public function addLocation($timezone, $latitude, $longitude, $country_code)
+    public function addLocation($timezone, $latitude, $longitude, $country_code, $location)
     {
 
         $query = "INSERT INTO `locations`(`timezone`, `latitude`, `longitude`, `country_code`) 
@@ -318,7 +318,17 @@ class DBConnection
 
         if ($GLOBALS["connection"]->query($query) === true) {
 
-            return $this->createJSONResponse("success", null);
+            $id = $GLOBALS["connection"] -> insert_id;
+
+            $query = "INSERT INTO `swimming_locations`(`Tournament_ID`, `Tournament_Location`) 
+                VALUES (' " . $id . " ',' " . $location . "');";
+
+            if ($GLOBALS["connection"]->query($query) === true) {
+                return $this->createJSONResponse("success", null);
+            }
+            else {
+                return $this->createJSONResponse("failure", null);
+            }
         }
         else {
             return $this->createJSONResponse("failure", null);
@@ -398,11 +408,17 @@ class DBConnection
         }
     }
 
-    //Adds a location to the database
+    //Uploads media to the database
     public function uploadMedia($id, $file)
     {
+        $path = "../media/" . $file;
+        return $this->createJSONResponse( $path . "!", null);
+        //echo $path;
+        $image = file_get_contents($path);
+        //echo $image;
+        return $this->createJSONResponse("didnotcrash", null);
         $query = "INSERT INTO `swimmer_media`(`Swimmer_ID`, `Picture`) 
-                    VALUES ('$id','$file');";
+                    VALUES ('$id','$image');";
 
         if ($GLOBALS["connection"]->query($query) === true) {
 
@@ -549,7 +565,7 @@ class DBConnection
             $temp = $this->getAllTournaments();
             echo $temp;
         } else if ($function == "addLocation") {
-            $temp = $this->addLocation($params["timezone"], $params["latitude"], $params["longitude"], $params["country_code"]);
+            $temp = $this->addLocation($params["timezone"], $params["latitude"], $params["longitude"], $params["country_code"], $params["location_name"]);
             echo $temp;
         } else if ($function == "updateLocation") {
             $temp = $this->updateLocation($params["timezone"], $params["latitude"], $params["longitude"], $params["country_code"], $params["location_name"], $params["id"]);

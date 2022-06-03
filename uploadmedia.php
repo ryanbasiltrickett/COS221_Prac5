@@ -26,14 +26,14 @@
         <h3>Upload the media of chosen swimmer</h3>
 
         <div class="container">
-            <form method="POST" action="php/validate-media.php">  
+            <form method="POST" action="php/validate-media.php" enctype="multipart/form-data">  
                 <br/>
                 <label>Swimmer: </label> <br/>
                 <select name="swimmer" id="swimmer">
                 </select> <br/>
 
                 <input type="file" id="file" name="image_file" accept="image/*"> <br/>
-                <button  type="submit" onsubmit="uploadMedia()" name="upload">Upload</button>   <br/>
+                <button  type="submit" onclick="uploadMedia()" name="upload">Upload</button>   <br/>
             </form>                
         </div>
     </div>

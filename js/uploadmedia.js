@@ -29,30 +29,12 @@ function loadSwimmers(){
 
 function uploadMedia() {
 
-    return true;
+    //return;
     
     id = document.getElementById("swimmer").value;
-    uimage = document.getElementById("file");
+    image = document.getElementById("file").files[0].name;
 
-    /*uploaded_image.addEventListener("change", function() {
-        reader = new FileReader();
-        reader.addEventListener("load", () => {
-          image = reader.result;
-        });
-        alert(image);
-      });*/
 
-      /*var reader = new FileReader();
-      reader.readAsDataURL(uimage.files[0]);
-      fReader.onloadend = function(event){
-          var img = document.getElementById("yourImgTag");
-          img.src = event.target.result;
-      }
-      reader.addEventListener('load', (e) => {
-         image = e.target.result;
-      });*/
-
-      //alert(fReader);
     const xhttp = new XMLHttpRequest();
 
     xhttp.onload = function(){
@@ -62,7 +44,9 @@ function uploadMedia() {
             alert("Media uploaded successfully");
         }
         else {
-            alert("Error occured when uploading media");
+            //alert("Error occured when uploading media");
+            alert(data.status);
+            console.log(data.status);
         }
     }
 
