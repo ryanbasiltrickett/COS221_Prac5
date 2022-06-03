@@ -492,6 +492,42 @@ class DBConnection
         }
     }
 
+    // Returns tournament details for a specific id
+    public function getTournamentDetails($id)
+    {
+        $query = "SELECT Name, Start_Date, End_Date
+                  FROM tournament
+                  WHERE Tournament_ID = $id;";
+
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $returnArr = [];
+            $returnArr[0]["name"] = $row["Name"];
+            $returnArr[0]["start"] =$row["Start_Date"];
+            $returnArr[0]["end"] = $row["End_Date"];
+            
+            return $this->createJSONResponse("success", $returnArr);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
+    public function updateTournament($id, $name, $start, $end)
+    {
+        $query = "UPDATE tournament
+                  SET Name = '$name', Start_Date = '$start', End_Date = '$end'
+                  WHERE Tournament_ID = $id;";
+
+        if ($GLOBALS["connection"]->query($query) === true) {
+            return $this->createJSONResponse("success", null);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
     //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
     //You can then return the result of this function
@@ -573,6 +609,12 @@ class DBConnection
         }
         else if ($function == "getTournamentEvents") {
             $temp = $this->getTournamentEvents($params["tournamentId"]);
+            echo $temp;
+        } else if ($function == "getTournamentDetails") {
+            $temp = $this->getTournamentDetails($params["tournamentId"]);
+            echo $temp;
+        } else if ($function == "updateTournament") {
+            $temp = $this->updateTournament($params["tournamentId"], $params["name"], $params["start"], $params["end"]);
             echo $temp;
         }
         else {
