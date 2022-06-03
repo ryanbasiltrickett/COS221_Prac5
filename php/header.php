@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="./css/header.css" />
 <header>
     <div class="navbar">
-        <img src="img/logo365_1.png" alt="Nav Logo" class="navlogo">
+        <img src="img/logo_2.png" alt="Nav Logo" class="navlogo">
         <nav>
             <ul>
                 <?php
