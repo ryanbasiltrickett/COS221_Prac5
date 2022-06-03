@@ -236,3 +236,38 @@ function updateTournament()
     xhttp.open("POST", "./php/database.php", false);
     xhttp.send(strParams);
 }
+
+function addTournament()
+{
+    tName = document.getElementById("name").value.trim();
+    start = document.getElementById("start").value;
+    end = document.getElementById("end").value;
+
+    if (tName == "" || start == "" || end == "")
+        return;
+
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function(){
+        var data = JSON.parse(this.response);
+
+        if (data.status == "success"){
+            alert("Tournament added successfully");
+        }
+        else {
+            alert("Error occured when adding tournament");
+        }
+    }
+
+    params = {
+        "function": "addTournament",
+        "name" : tName,
+        "start" : start,
+        "end" : end
+    };
+    
+    strParams = JSON.stringify(params);
+    
+    xhttp.open("POST", "./php/database.php", false);
+    xhttp.send(strParams);
+}

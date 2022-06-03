@@ -514,11 +514,26 @@ class DBConnection
         }
     }
 
+    //Updates a given tournament
     public function updateTournament($id, $name, $start, $end)
     {
         $query = "UPDATE tournament
                   SET Name = '$name', Start_Date = '$start', End_Date = '$end'
                   WHERE Tournament_ID = $id;";
+
+        if ($GLOBALS["connection"]->query($query) === true) {
+            return $this->createJSONResponse("success", null);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
+    public function addTournament($name, $start, $end)
+    {
+        $query = "INSERT into tournament
+                  (Name, Start_Date, End_Date)
+                  VALUES('$name', '$start', '$end')";
 
         if ($GLOBALS["connection"]->query($query) === true) {
             return $this->createJSONResponse("success", null);
@@ -615,6 +630,9 @@ class DBConnection
             echo $temp;
         } else if ($function == "updateTournament") {
             $temp = $this->updateTournament($params["tournamentId"], $params["name"], $params["start"], $params["end"]);
+            echo $temp;
+        } else if ($function == "addTournament") {
+            $temp = $this->addTournament($params["name"], $params["start"], $params["end"]);
             echo $temp;
         }
         else {
