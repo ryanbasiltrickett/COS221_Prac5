@@ -45,12 +45,12 @@ function loadPB(){
         pbLabel = document.getElementById("pbLabel");
         if (data.status == "success"){
             pbLabel.innerHTML="Personal Bests:";
-            inner = "<tr>   <th>Time</th>  <th>Stroke</th>  </tr>";
+            inner = "<tr>   <th>Time</th>  <th>Stroke</th>  <th>Distance</th> </tr>";
             var arr = (data.data[0]);
            
             for (var key in data.data){
                 
-                inner+="<tr><td>"+data.data[key].Time+"</td><td>"+data.data[key].Stroke_Name+"</td></tr>"
+                inner+="<tr><td>"+data.data[key].Time+"</td><td>"+data.data[key].Stroke_Name+"</td><td>"+data.data[key].Distance+"</td></tr>"
             
             }
             pb.innerHTML = inner;
@@ -86,12 +86,12 @@ function loadEvents(){
         pbLabel = document.getElementById("eventLabel");
         if (data.status == "success"){
             pbLabel.innerHTML="Event Stats:";
-            inner = "<tr>   <th>Tournament Name</th>  <th>Tournament Phase</th> <th>Stroke</th> <th>Time</th></tr>";
+            inner = "<tr>   <th>Tournament Name</th>  <th>Tournament Phase</th> <th>Stroke</th> <th>Distance</th> <th>Time</th></tr>";
             var arr = (data.data[0]);
            
             for (var key in data.data){
                 
-                inner+="<tr><td>"+data.data[key].Name+"</td><td>"+data.data[key].Classification+"</td><td>"+data.data[key].Stroke_Name+"</td><td>"+data.data[key].Time+"</td></tr>"
+                inner+="<tr><td>"+data.data[key].Name+"</td><td>"+data.data[key].Classification+"</td><td>"+data.data[key].Stroke_Name+"</td><td>"+data.data[key].Distance+"</td><td>"+data.data[key].Time+"</td></tr>"
             
             }
             pb.innerHTML = inner;
