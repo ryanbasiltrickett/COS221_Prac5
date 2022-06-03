@@ -10,7 +10,7 @@
     <script src="js/manageeventinfo.js"></script>
 </head>
 
-<div class="addTournament-image">
+<div class="manageEventInfo-image">
     <?php
         session_start();
         $_SESSION["page"] = "addtournaments";

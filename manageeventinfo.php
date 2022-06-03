@@ -10,7 +10,7 @@
 </head>
 
 
-    <div class="manageLocation-image">
+    <div class="manageEventInfo-image">
         <?php
             session_start();
             $_SESSION["page"] = "manageeventinfo";

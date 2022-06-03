@@ -9,25 +9,7 @@
     display: inline-block;
 }
 
-.addLocation-image {
-    width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url(../img/Phelps.jpg);
-    background-position: center;
-    background-size: cover;
-    
-}
-
-.updateLocation-image {
-    width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url(../img/Breast_Stroke1.jpg);
-    background-position: center;
-    background-size: cover;
-    
-}
-
-.manageLocation-image {
+.manageEventInfo-image {
     width: 100%;
     height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url(../img/Swim_Venue.jpg);
@@ -35,16 +17,6 @@
     background-size: cover;
     
 }
-
-.updateLocation-image {
-    width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url(../img/Swim_Venue.jpg);
-    background-position: center;
-    background-size: cover;
-    
-}
-
 
 .credentials form input{
     flex: 1;
