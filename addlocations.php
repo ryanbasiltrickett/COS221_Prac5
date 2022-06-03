@@ -26,16 +26,16 @@
         <h3>Enter the details of the location to be added</h3>
 
         <div class="container">
-            <form method='POST' action='validate-update.php'>  
+            <form>  
                 <label>Timezone: </label> <br/>
-                <input type="text" placeholder="Enter Time Zone Code" name="timezone" required> <br/>
+                <input type="text" placeholder="Enter Time Zone Code" id="timezone" required> <br/>
                 <label>Latitude: </label>   <br/>
-                <input type="text" placeholder="Enter Latitude" name="latitude" required> <br/>
+                <input type="text" placeholder="Enter Latitude" id="latitude" required> <br/>
                 <label>Longitude: </label>   <br/>
-                <input type="text" placeholder="Enter Longitude" name="longitude"> <br/>
+                <input type="text" placeholder="Enter Longitude" id="longitude" required> <br/>
                 <label>Country Code: </label>   <br/>
-                <input type="text" placeholder="Enter Country Code" name="country_code" required> <br/>
-                <button onclick="updateLocation()" type="submit">Add Location</button>   <br/>
+                <input type="text" placeholder="Enter Country Code" id="country_code" required> <br/>
+                <button onclick="addLocation()" type="submit">Add Location</button>   <br/>
             </form>                
         </div>
     </div>

@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Media</title>
-    <link rel="stylesheet" href="./css/uploadmedias.css" />
+    <link rel="stylesheet" href="./css/uploadmedia.css" />
+    <script src="js/uploadmedia.js"></script>
 </head>
 
 <div class="uploadMedia-image">
@@ -18,18 +19,21 @@
 </div>
 
 
-<body>
+<body onLoad="loadSwimmers()">
 
     <div class="credentials">
         <h1>Upload Media</h1>
-        <h3>Enter the details of the media you wish to upload</h3>
+        <h3>Upload the media of chosen swimmer</h3>
 
         <div class="container">
-            <form method='POST' action='validate-upload.php'>  
-                <label >Upload picture or Video:</label> <br> <br>
+            <form method="POST" action="php/validate-media.php">  
+                <br/>
+                <label>Swimmer: </label> <br/>
+                <select name="swimmer" id="swimmer">
+                </select> <br/>
 
-                <input type="file" id="file" name="file" accept="image/png, image/jpeg, video/mp4"> <br/>
-                <button onclick="uploadMedia()" type="submit">Upload</button>   <br/>
+                <input type="file" id="file" name="image_file" accept="image/*"> <br/>
+                <button  type="submit" onsubmit="uploadMedia()" name="upload">Upload</button>   <br/>
             </form>                
         </div>
     </div>

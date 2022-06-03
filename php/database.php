@@ -325,10 +325,84 @@ class DBConnection
         }
     }
 
-    public function updateLocation($timezone, $latitude, $longitude, $country_code)
+    //Updates a location in the database
+    public function updateLocation($timezone, $latitude, $longitude, $country_code, $location, $id)
     {
+        $query = "UPDATE `swimming_locations` 
+                    SET `Tournament_Location`= '$location'
+                    WHERE Tournament_ID = $id;";
 
-        $query = "";
+        if ($GLOBALS["connection"]->query($query) === true) {
+
+            $query = "UPDATE `locations` 
+                    SET `timezone`= '$timezone' ,`latitude`= '$latitude' ,`longitude`= '$longitude' ,`country_code`= '$country_code' 
+                    WHERE id = $id;";
+
+            if ($GLOBALS["connection"]->query($query) === true) {
+                return $this->createJSONResponse("success", null);
+            }
+            else {
+                return $this->createJSONResponse("failure", null);
+            }
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+
+    }
+
+    //Returns all locations
+    public function getAllLocations()
+    {
+        $query = "SELECT Tournament_ID , `Tournament_Location`
+                  FROM swimming_locations
+                  ORDER BY Tournament_Location;";
+
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["location_id"] = $row["Tournament_ID"];
+                $returnArr[$counter]["location_name"] = $row["Tournament_Location"];
+                $counter++;
+            }
+            return $this->createJSONResponse("success", $returnArr);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
+    //Returns location details by id
+    public function getLocationDetails($id)
+    {
+        $query = "SELECT `timezone`, `latitude`, `longitude`, `country_code`, `Tournament_Location`
+                  FROM locations, swimming_locations
+                  WHERE id = " . $id . " AND locations.id = swimming_locations.Tournament_ID;";
+
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $returnArr = [];
+            $returnArr[0]["timezone"] = $row["timezone"];
+            $returnArr[0]["latitude"] =$row["latitude"];
+            $returnArr[0]["longitude"] = $row["longitude"];
+            $returnArr[0]["country_code"] = $row["country_code"];
+            $returnArr[0]["Tournament_Location"] = $row["Tournament_Location"];
+            
+            return $this->createJSONResponse("success", $returnArr);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
+    //Adds a location to the database
+    public function uploadMedia($id, $file)
+    {
+        $query = "INSERT INTO `swimmer_media`(`Swimmer_ID`, `Picture`) 
+                    VALUES ('$id','$file');";
 
         if ($GLOBALS["connection"]->query($query) === true) {
 
@@ -399,13 +473,23 @@ class DBConnection
             $temp = $this->addLocation($params["timezone"], $params["latitude"], $params["longitude"], $params["country_code"]);
             echo $temp;
         } else if ($function == "updateLocation") {
-            $temp = $this->updateLocation($params["timezone"], $params["latitude"], $params["longitude"], $params["country_code"]);
+            $temp = $this->updateLocation($params["timezone"], $params["latitude"], $params["longitude"], $params["country_code"], $params["location_name"], $params["id"]);
             echo $temp;
         } 
-        else {
+        else if ($function == "getAllLocations") {
+            $temp = $this->getAllLocations();
+            echo $temp;
+        } else if ($function == "getLocationDetails") {
+            $temp = $this->getLocationDetails($params["locationId"]);
+            echo $temp;
+        } else if ($function == "uploadMedia") {
+            $temp = $this->uploadMedia($params["id"], $params["image"]);
+            echo $temp;
+        } else {
             echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);
         }
     }
+
 }
 
 DBConnection::instance()->processRequest();
