@@ -1,3 +1,7 @@
+.logo {
+    height: 450px;
+    width: auto;
+}
 
 h1{
     margin-top: 70px;
@@ -26,6 +30,5 @@ h3{
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
-    color: azure;
-    
+    color: azure;  
 }
