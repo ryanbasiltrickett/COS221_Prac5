@@ -28,8 +28,6 @@ function loadSwimmers(){
 }
 
 function uploadMedia() {
-
-    //return;
     
     id = document.getElementById("swimmer").value;
     image = document.getElementById("file").files[0].name;
@@ -44,9 +42,7 @@ function uploadMedia() {
             alert("Media uploaded successfully");
         }
         else {
-            //alert("Error occured when uploading media");
-            alert(data.status);
-            console.log(data.status);
+            alert("Error occured when uploading media");
         }
     }
 

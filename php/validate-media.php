@@ -19,8 +19,8 @@ $msg = "";
  
     }
 
-
-    echo $msg;
+    //header('Content-Type: image/jpeg');
+    //echo readfile($folder);
 
     header("Location: ../uploadmedia.php");
 

@@ -411,14 +411,18 @@ class DBConnection
     //Uploads media to the database
     public function uploadMedia($id, $file)
     {
-        $path = "../media/" . $file;
-        return $this->createJSONResponse( $path . "!", null);
+        //$path = "../media/" . $file;
+        //$path = "../media/" . "Black.jpeg";
         //echo $path;
-        $image = file_get_contents($path);
+        //$image = file_get_contents($path);
+        //return $this->createJSONResponse( $image, null);
         //echo $image;
-        return $this->createJSONResponse("didnotcrash", null);
+        //return $this->createJSONResponse("didnotcrash", null);
+        //header('Content-Type: image/jpeg');
+        //$image = readfile($path);
+
         $query = "INSERT INTO `swimmer_media`(`Swimmer_ID`, `Picture`) 
-                    VALUES ('$id','$image');";
+                    VALUES ('$id', '$file');";
 
         if ($GLOBALS["connection"]->query($query) === true) {
 
@@ -568,7 +572,7 @@ class DBConnection
         if ($status == "failure") {
             $returnJSON = json_encode(["status" => "failure", "timestamp" => time(), "data" => null]);
             return $returnJSON;
-        } else if ($status = "success") {
+        } else if ($status == "success") {
             $returnJSON = json_encode(["status" => "success", "timestamp" => time(), "data" => $assocArr]);
             return $returnJSON;
         } else {
