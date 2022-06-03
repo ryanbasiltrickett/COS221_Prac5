@@ -3,6 +3,7 @@ function loadUpdate()
     
     loadSwimmers();
     loadPB();
+    
 }
 
 function loadSwimmers(){
@@ -31,6 +32,7 @@ function loadSwimmers(){
     
     xhttp.open("POST", "./php/database.php", false);
     xhttp.send(strParams);
+    
 }
 
 function loadPB(){
@@ -39,9 +41,10 @@ function loadPB(){
     xhttp.onload = function(){
         console.log(this.response);
         var data = JSON.parse(this.response);
-
+        pb = document.getElementById("PBs");
+        pbLabel = document.getElementById("pbLabel");
         if (data.status == "success"){
-            pb = document.getElementById("PBs");
+            pbLabel.innerHTML="Personal Bests:";
             inner = "<tr>   <th>Time</th>  <th>Stroke</th>  </tr>";
             var arr = (data.data[0]);
            
@@ -51,16 +54,58 @@ function loadPB(){
             
             }
             pb.innerHTML = inner;
+            loadEvents();
         }
         else {
 
             alert("Error occured when obtaining swimmer's stats");
             pb.innerHTML = "";
+            pbLabel.innerHTML="";
         }
     }
 
     params = {
         "function": "getSwimmerPB",
+        "swimmerId" : document.getElementById("swimmer").value
+    };
+    
+    strParams = JSON.stringify(params);
+    
+    xhttp.open("POST", "./php/database.php", false);
+    xhttp.send(strParams);
+    
+}
+
+function loadEvents(){
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function(){
+        console.log(this.response);
+        var data = JSON.parse(this.response);
+        pb = document.getElementById("events");
+        pbLabel = document.getElementById("eventLabel");
+        if (data.status == "success"){
+            pbLabel.innerHTML="Event Stats:";
+            inner = "<tr>   <th>Tournament Name</th>  <th>Tournament Phase</th> <th>Stroke</th> <th>Time</th></tr>";
+            var arr = (data.data[0]);
+           
+            for (var key in data.data){
+                
+                inner+="<tr><td>"+data.data[key].Name+"</td><td>"+data.data[key].Classification+"</td><td>"+data.data[key].Stroke_Name+"</td><td>"+data.data[key].Time+"</td>/<tr>"
+            
+            }
+            pb.innerHTML = inner;
+        }
+        else {
+
+            alert("Error occured when obtaining swimmer's stats");
+            pb.innerHTML = "";
+            pbLabel.innerHTML="";
+        }
+    }
+
+    params = {
+        "function": "getSwimmerEvents",
         "swimmerId" : document.getElementById("swimmer").value
     };
     

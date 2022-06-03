@@ -360,6 +360,30 @@ class DBConnection
         }
     }
 
+    public function getSwimmerEvents($swimmerId)
+    {
+        
+        $query = "SELECT individual_stroke_event_stats.Time, swimming_events.Stroke_Name , tournament.Name, tournament_event_phases.Classification
+        FROM swimming_events,tournament, individual_stroke_event_stats INNER JOIN tournament_event_phases ON individual_stroke_event_stats.Event_Phase_ID =tournament_event_phases.Tourn_Event_Phase_ID
+        WHERE tournament.Tournament_ID= tournament_event_phases.Tournament_ID AND individual_stroke_event_stats.Swimmer_ID=".$swimmerId." AND tournament_event_phases.Stroke_Event_ID=swimming_events.Stroke_ID;";
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["Classification"] = $row["Classification"];
+                $returnArr[$counter]["Name"] = $row["Name"];
+                $returnArr[$counter]["Time"] = $row["Time"];
+                $returnArr[$counter]["Stroke_Name"] = $row["Stroke_Name"];
+                $counter++;
+            }
+            return $this->createJSONResponse("success", $returnArr);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
     //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
     //You can then return the result of this function
@@ -424,6 +448,10 @@ class DBConnection
             echo $temp;
         } else if ($function == "getSwimmerPB") {
             $temp = $this->getSwimmersPB($params["swimmerId"]);
+            echo $temp;
+        }
+        else if ($function == "getSwimmerEvents") {
+            $temp = $this->getSwimmerEvents($params["swimmerId"]);
             echo $temp;
         }
         else {
