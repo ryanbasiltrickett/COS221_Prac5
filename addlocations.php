@@ -13,7 +13,7 @@
 <div class="updateLocation-image">
     <?php
         session_start();
-        $_SESSION["page"] = "updateswimmers";
+        $_SESSION["page"] = "addlocations";
         require_once("php/header.php");
     ?>
 </div>

@@ -15,10 +15,10 @@
                         else
                             echo ('<li><a href = "manageswimmers.php" type = "text/html">Manage Swimmers</a></li>');
 
-                        if ($_SESSION["page"] == "managelocations")
-                            echo ('<li><a href = "managelocations.php" type = "text/html" class = "active">Manage Locations</a></li>');
+                        if ($_SESSION["page"] == "managetourndetails")
+                            echo ('<li><a href = "managelocations.php" type = "text/html" class = "active">Manage Event Info</a></li>');
                         else
-                            echo ('<li><a href = "managelocations.php" type = "text/html">Manage Locations</a></li>');
+                            echo ('<li><a href = "managelocations.php" type = "text/html">Manage Event Info</a></li>');
 
                         if ($_SESSION["page"] == "logresults")
                             echo ('<li><a href = "logresults.php" type = "text/html" class = "active">Log Results</a></li>');
