@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Tournament</title>
-    <link rel="stylesheet" href="./css/managelocation.css" />
-    <script src="js/managelocations.js"></script>
+    <link rel="stylesheet" href="./css/manageeventinfo.css" />
+    <script src="js/manageeventinfo.js"></script>
 </head>
 
-<div class="addTournament-image">
+<div class="manageEventInfo-image">
     <?php
         session_start();
         $_SESSION["page"] = "addtournaments";
@@ -26,11 +26,11 @@
         <div class="container">
             <form>  
                 <label>Name: </label> <br/>
-                <input type="text" placeholder="Enter Tournament Name" name="timezone" required> <br/>
+                <input type="text" placeholder="Enter Tournament Name" id="name" required> <br/>
                 <label>Start Date: </label>   <br/>
-                <input type="date" id="date" placeholder="dd-mm-yyyy" min="1973-01-01" max="2003-12-31" name="date"> <br/>
+                <input type="date" placeholder="dd-mm-yyyy" id="start" required> <br/>
                 <label>End Date: </label>   <br/>
-                <input type="date" id="date" placeholder="dd-mm-yyyy" name="date"> <br/>
+                <input type="date" placeholder="dd-mm-yyyy" id="end" required> <br/>
                 <button onclick="addTournament()" type="submit">Add</button>   <br/>
             </form>                
         </div>

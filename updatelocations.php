@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Location</title>
-    <link rel="stylesheet" href="./css/managelocation.css" />
-    <script src="js/managelocations.js"></script>
+    <link rel="stylesheet" href="./css/manageeventinfo.css" />
+    <script src="js/manageeventinfo.js"></script>
 </head>
 
-<div class="updateLocation-image">
+<div class="manageEventInfo-image">
     <?php
         session_start();
         $_SESSION["page"] = "deleteswimmers";

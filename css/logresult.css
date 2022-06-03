@@ -1,25 +1,7 @@
 .logResults-image {
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url(../img/Race5.jpg);
-    background-position: center;
-    background-size: cover;
-    
-}
-
-.logPersonalResults-image {
-    width: 100%;
-    height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url(../img/Solo_Swim4.jpg);
-    background-position: center;
-    background-size: cover;
-    
-}
-
-.logTeamResults-image {
-    width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url(../img/Race6.jpg);
     background-position: center;
     background-size: cover;
     

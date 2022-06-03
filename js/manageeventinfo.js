@@ -144,3 +144,132 @@ function updateLocation()
     xhttp.open("POST", "./php/database.php", false);
     xhttp.send(strParams);
 }
+
+function loadTournaments()
+{
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function(){
+        var data = JSON.parse(this.response);
+
+        if (data.status == "success"){
+            tournamentSelect = document.getElementById("tournament");
+            inner = "";
+            for (i = 0; i < data.data.length; i++)
+            {
+                inner += '<option value="' + data.data[i].tournament_id + '">' + data.data[i].name + '</option>';
+            }
+
+            tournamentSelect.innerHTML = inner;
+            loadTournamentDetails();
+        }
+    }
+
+    params = {
+        "function": "getAllTournaments"
+    };
+    
+    strParams = JSON.stringify(params);
+    
+    xhttp.open("POST", "./php/database.php", false);
+    xhttp.send(strParams);
+}
+
+function loadTournamentDetails()
+{
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function(){
+        var data = JSON.parse(this.response);
+
+        if (data.status == "success"){
+            document.getElementById("name").value = data.data[0].name;
+            document.getElementById("start").value = data.data[0].start;
+            document.getElementById("end").value = data.data[0].end;
+        }
+        else {
+            alert("Error occured when obtaining location details");
+        }
+    }
+
+    params = {
+        "function": "getTournamentDetails",
+        "tournamentId" : document.getElementById("tournament").value
+    };
+    
+    strParams = JSON.stringify(params);
+    
+    xhttp.open("POST", "./php/database.php", false);
+    xhttp.send(strParams);
+}
+
+function updateTournament()
+{
+    tName = document.getElementById("name").value.trim();
+    start = document.getElementById("start").value;
+    end = document.getElementById("end").value;
+
+    if (tName == "" || start == "" || end == "")
+        return;
+
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function(){
+        var data = JSON.parse(this.response);
+
+        if (data.status == "success"){
+            alert("Tournament updated successfully");
+        }
+        else {
+            alert("Error occured when updating tournament");
+        }
+    }
+
+    params = {
+        "function": "updateTournament",
+        "tournamentId" : document.getElementById("tournament").value,
+        "name" : tName,
+        "start" : start,
+        "end" : end,
+    };
+    
+    strParams = JSON.stringify(params);
+    
+    xhttp.open("POST", "./php/database.php", false);
+    xhttp.send(strParams);
+}
+
+function addTournament()
+{
+    tName = document.getElementById("name").value.trim();
+    start = document.getElementById("start").value;
+    end = document.getElementById("end").value;
+
+    if (tName == "" || start == "" || end == "")
+        return;
+
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function(){
+        var data = JSON.parse(this.response);
+
+        if (data.status == "success"){
+            alert("Tournament added successfully");
+        }
+        else {
+            alert("Error occured when adding tournament");
+        }
+    }
+
+    params = {
+        "function": "addTournament",
+        "name" : tName,
+        "start" : start,
+        "end" : end
+    };
+    
+    strParams = JSON.stringify(params);
+    
+    xhttp.open("POST", "./php/database.php", false);
+    xhttp.send(strParams);
+}
