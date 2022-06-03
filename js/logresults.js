@@ -3,6 +3,7 @@ function loadIndividualPage()
     loadSwimmers();
     loadTournaments();
     loadEvents();
+    loadLane();
 }
 
 function loadTeamPage()
@@ -10,6 +11,7 @@ function loadTeamPage()
     loadTeamSwimmers();
     loadTournaments();
     loadEvents();
+    loadLane();
 }
 
 function loadSwimmers(){
@@ -134,4 +136,16 @@ function loadEvents(){
     
     xhttp.open("POST", "./php/database.php", false);
     xhttp.send(strParams);
+}
+
+function loadLane(){
+
+    laneSelect = document.getElementById("lane");
+    inner = "";
+    for (xx = 1; xx < 9; xx++)
+    {
+        inner += '<option value="' + xx + '">' + xx + '</option>';
+    }
+
+    laneSelect.innerHTML = inner;
 }

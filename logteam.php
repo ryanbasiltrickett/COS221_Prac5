@@ -44,6 +44,9 @@
                 <label>Event: </label>   <br/>
                 <select name="event" id="event">
                 </select> <br/>
+                <label>Swimming Lane: </label>   <br/>
+                <select name="lane" id="lane">
+                </select> <br/>
                 <label>Event Phase: </label>   <br/>
                 <input type="text" placeholder="Enter Event Phase Of Tournment " name="event"> <br/>
                 <label>Time: </label> <br />
