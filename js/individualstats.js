@@ -50,7 +50,7 @@ function loadPB(){
            
             for (var key in data.data){
                 
-                inner+="<tr><td>"+data.data[key].Time+"</td><td>"+data.data[key].Stroke_Name+"</td>/<tr>"
+                inner+="<tr><td>"+data.data[key].Time+"</td><td>"+data.data[key].Stroke_Name+"</td></tr>"
             
             }
             pb.innerHTML = inner;
@@ -91,7 +91,7 @@ function loadEvents(){
            
             for (var key in data.data){
                 
-                inner+="<tr><td>"+data.data[key].Name+"</td><td>"+data.data[key].Classification+"</td><td>"+data.data[key].Stroke_Name+"</td><td>"+data.data[key].Time+"</td>/<tr>"
+                inner+="<tr><td>"+data.data[key].Name+"</td><td>"+data.data[key].Classification+"</td><td>"+data.data[key].Stroke_Name+"</td><td>"+data.data[key].Time+"</td></tr>"
             
             }
             pb.innerHTML = inner;
