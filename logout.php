@@ -16,9 +16,7 @@
             <img src="img/logo_1.png" alt="Project Logo" class="logo">
         </div>
     </div>
-
-
-
+    
     <?php
     //This removes the session
     session_start();
