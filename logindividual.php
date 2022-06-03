@@ -10,7 +10,7 @@
     <script src="js/logresults.js"></script>
 </head>
 
-<div class="logPersonalResults-image">
+<div class="logResults-image">
     <?php
         session_start();
         $_SESSION["page"] = "logindividual";

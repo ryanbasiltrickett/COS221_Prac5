@@ -10,7 +10,7 @@
     <script src="js/manageswimmers.js"></script>
 </head>
 
-<div class="addSwimmer-image">
+<div class="manageSwimmer-image">
     <?php
         session_start();
         $_SESSION["page"] = "addswimmers";
