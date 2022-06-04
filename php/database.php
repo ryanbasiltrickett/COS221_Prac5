@@ -79,8 +79,7 @@ class DBConnection
     //You can use these functions as examples as how to query the DB and format a response
     public function registerUser($username, $password)
     {
-        $query = "INSERT INTO login_cre
-        dentials (Username, Password)";
+        $query = "INSERT INTO login_credentials (Username, Password)";
         $query = $query . 'VALUES ("' . $username . '", "' . $password . '")';
 
         $success = $GLOBALS["connection"]->query($query);
