@@ -35,3 +35,7 @@ function registerUser(){
     xhttp.open("POST", "./php/database.php", false);
     xhttp.send(strParams);
 }
+
+function goToLogin() {
+    location.href = "./login.php";
+}
