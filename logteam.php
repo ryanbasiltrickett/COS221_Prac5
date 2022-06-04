@@ -10,53 +10,50 @@
     <script src="js/logresults.js"></script>
 </head>
 
-<div class="logResults-image">
-    <?php
-        session_start();
-        $_SESSION["page"] = "logteam";
-        require_once("php/header.php");
-    ?>
-</div>
-
+<?php
+    session_start();
+    $_SESSION["page"] = "logteam";
+    require_once("php/header.php");
+?>
 
 <body onLoad="loadTeamPage()">
-    <div class="credentials">
-        <h1>Log Results</h1>
-        <h3>Enter result details</h3>
+    <div class="logResultsTeam-image">
+        <div class="credentialsTeam">
+            <h1>Log Results</h1>
+            <h3>Enter result details</h3>
 
-        <div class="container">
-            <form method='POST' action='validate-add.php'>
-                <label>Swimmer 1: </label> <br />
-                <select name="swimmer1" id="swimmer1">
-                </select> <br />
-                <label>Swimmer 2: </label> <br />
-                <select name="swimmer2" id="swimmer2">
-                </select> <br />
-                <label>Swimmer 3: </label> <br />
-                <select name="swimmer3" id="swimmer3">
-                </select> <br />
-                <label>Swimmer 4: </label> <br />
-                <select name="swimmer4" id="swimmer4">
-                </select> <br />
-                <label>Tournment: </label> <br />
-                <select name="tournament" id="tournament">
-                </select> <br />
-                <label>Event: </label>   <br/>
-                <select name="event" id="event">
-                </select> <br/>
-                <label>Swimming Lane: </label>   <br/>
-                <select name="lane" id="lane">
-                </select> <br/>
-                <label>Event Phase: </label>   <br/>
-                <input type="text" placeholder="Enter Event Phase Of Tournment " name="event"> <br/>
-                <label>Time: </label> <br />
-                <input type="text" id="time" placeholder="mm:ss:mm" name="time"> <br />
-                <button onclick="addTeamResult()" type="submit">Add Results</button> <br />
-            </form>
+            <div class="container">
+                <form method='POST' action='validate-add.php'>
+                    <label>Swimmer 1: </label> <br />
+                    <select name="swimmer1" id="swimmer1">
+                    </select> <br />
+                    <label>Swimmer 2: </label> <br />
+                    <select name="swimmer2" id="swimmer2">
+                    </select> <br />
+                    <label>Swimmer 3: </label> <br />
+                    <select name="swimmer3" id="swimmer3">
+                    </select> <br />
+                    <label>Swimmer 4: </label> <br />
+                    <select name="swimmer4" id="swimmer4">
+                    </select> <br />
+                    <label>Tournment: </label> <br />
+                    <select name="tournament" id="tournament">
+                    </select> <br />
+                    <label>Event: </label>   <br/>
+                    <select name="event" id="event">
+                    </select> <br/>
+                    <label>Swimming Lane: </label>   <br/>
+                    <select name="lane" id="lane">
+                    </select> <br/>
+                    <label>Event Phase: </label>   <br/>
+                    <input type="text" placeholder="Enter Event Phase Of Tournment " name="event"> <br/>
+                    <label>Time: </label> <br />
+                    <input type="text" id="time" placeholder="mm:ss:mm" name="time"> <br />
+                    <button onclick="addTeamResult()" type="submit">Add Results</button> <br />
+                </form>
+            </div>
         </div>
     </div>
-
-    You also need to be able to capture results for an entire team by specifying the 4 swimmers, the event, the tournament and the final time. This also needs to generate a team in the teams table, it might be needed to capture data such as date depending on the final data model.
 </body>
 
 </html>
