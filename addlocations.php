@@ -27,6 +27,8 @@
 
         <div class="container">
             <form>  
+                <label> Location Name: </label> <br/>
+                <input type="text" placeholder="Enter Name of location" id="location_name" required> <br/>
                 <label>Timezone: </label> <br/>
                 <input type="text" placeholder="Enter Time Zone Code" id="timezone" required> <br/>
                 <label>Latitude: </label>   <br/>

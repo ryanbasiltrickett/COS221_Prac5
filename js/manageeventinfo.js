@@ -71,7 +71,7 @@ function addLocation()
     country_code = document.getElementById("country_code").value.trim();
     location_name = document.getElementById("location_name").value.trim();
 
-    if (timezone == "" || latitude == "" || longitude == "" || country_code == "")
+    if (timezone == "" || latitude == "" || longitude == "" || country_code == "" || location_name == "")
         return;
 
     const xhttp = new XMLHttpRequest();
