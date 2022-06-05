@@ -1,9 +1,12 @@
 
 
 function validateLogin(){
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    var username = document.getElementById("username").value.trim();
+    var password = document.getElementById("password").value.trim();
     
+    if (username == "" || password == "")
+        return;
+
     var error = document.getElementById("errorArea");
 
     const xhttp = new XMLHttpRequest();

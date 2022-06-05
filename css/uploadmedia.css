@@ -7,14 +7,6 @@
     
 }
 
-.credentials form input{
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 0 20px;
-    font-size: 20px;
-}
-
 .credentials {
     width: 100%;
     text-align: center;
