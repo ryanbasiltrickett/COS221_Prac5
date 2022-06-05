@@ -11,30 +11,31 @@
 </head>
 
 <?php
-session_start();
-$_SESSION["page"] = "viewstatistics";
-require_once("php/header.php");
+    session_start();
+    $_SESSION["page"] = "viewstatistics";
+    require_once("php/header.php");
 ?>
 
 <body onLoad="loadUpdate()">
-<div class="individualStats-image">
+    <div class="individualStats-image">
         <h1>Review Statistics For An Individual Swimmer</h1>
         <div id="swimmerStats">
             <label>Swimmer: </label> 
         
-        <select name="swimmer" id="swimmer" onChange="loadPB()">
-        </select>
-        <br/>
-        <br/>
-        <br/>
-        <label id="pbLabel"> </label> <br/>
-        <table id ="PBs">
-        
-        </table>
-        <label id="eventLabel"> </label> <br/>
-        <table id ="events">
-        
-        </table>
+            <select name="swimmer" id="swimmer" onChange="loadPB()">
+            </select>
+            <br/>
+            <br/>
+            <br/>
+            <label id="pbLabel"> </label> <br/>
+            <table id ="PBs">
+            
+            </table>
+            <label id="eventLabel"> </label> <br/>
+            <table id ="events">
+            
+            </table>
+        </div>
     </div>
 </body>
 
