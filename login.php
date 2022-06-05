@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SwimStat</title>
+  <title>Login</title>
   <link rel="stylesheet" href="./css/login.css" />
 </head>
 
@@ -27,9 +27,8 @@
         <input type="password" placeholder="Enter Password" id="password" name="password" required> <br />
         <button onclick="validateLogin()">Login</button> <br />
       </div>
+      <button id="registerButton" onclick="goToRegister()">Register an Account</button>
       <p id="errorArea"></p>
-      <button id="registerButton" onclick="goToRegister()">Register an account</button>
-
     </div>
 
   </div>

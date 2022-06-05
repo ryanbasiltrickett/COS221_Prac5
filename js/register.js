@@ -1,7 +1,10 @@
 function registerUser(){
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    var confirm = document.getElementById("confirm").value;
+    var username = document.getElementById("username").value.trim();
+    var password = document.getElementById("password").value.trim();
+    var confirm = document.getElementById("confirm").value.trim();
+
+    if (username == "" || password == "" || confirm == "")
+        return;
 
     var error = document.getElementById("errorArea");
 
@@ -10,14 +13,13 @@ function registerUser(){
         return;
     }
 
-
     const xhttp = new XMLHttpRequest();
 
     xhttp.onload = function(){
-        // console.log(this.response);
          var data = JSON.parse(this.response);
  
          if (data.status == "success"){
+             alert("Successfully Registered");
              location.href = "./login.php";
          } else {
              error.innerText = "Username or password invalid for registration"
@@ -34,4 +36,8 @@ function registerUser(){
     
     xhttp.open("POST", "./php/database.php", false);
     xhttp.send(strParams);
+}
+
+function goToLogin() {
+    location.href = "./login.php";
 }

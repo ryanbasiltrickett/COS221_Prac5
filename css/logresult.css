@@ -4,7 +4,14 @@
     background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url(../img/Solo_Swim4.jpg);
     background-position: center;
     background-size: cover;
-    
+}
+
+.logResultsTeam-image {
+    width: 100%;
+    height: 120vh;
+    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url(../img/Solo_Swim4.jpg);
+    background-position: center;
+    background-size: cover;
 }
 
 .credentials form input{
@@ -26,14 +33,6 @@
     
 }
 
-.credentials form input{
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 0 20px;
-    font-size: 20px;
-}
-
 .credentials h1{
     margin-top: 80px;
     font-size: 70px;
@@ -48,6 +47,47 @@
 }
 
 .credentials button {
+    cursor:pointer;
+    background-color: rgb(0, 0, 255);
+    width: 45%;  
+    color: rgb(255, 255, 255);   
+    padding: 15px;   
+    margin: 10px 0px;   
+    border: none;   
+}
+
+.credentialsTeam {
+    width: 100%;
+    text-align: center;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    color: azure;
+}
+
+.credentialsTeam form input{
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    font-size: 20px;
+}
+
+.credentialsTeam h1{
+    margin-top: 80px;
+    font-size: 70px;
+
+}
+
+.credentialsTeam h3{
+    padding-top: 1px;
+    font-size: 21px;
+    color: rgb(0, 60, 255);
+    margin-bottom: 10px ;
+}
+
+.credentialsTeam button {
     cursor:pointer;
     background-color: rgb(0, 0, 255);
     width: 45%;  

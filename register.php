@@ -7,26 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="./css/register.css" />
+    <script src="./js/register.js"></script>
 </head>
 
 <body>
-    <div id="Banner">
-        <h1 id="mainHeading">Register</h1>
-        <h3 id="subtitle">Register a SwimStat account below</h3>
+    <div class="login-image">
+
     </div>
 
+    <div class="credentials">
+        <h1>Register</h1>
+        <h3>Register a SwimStat account below</h3>
 
-    <div>
-        Username:<input type="text" id="username" required><br>
-        Password:<input type="password" id="password" required><br>
-        Confirm password:<input type="password" id="confirm" required><br>
-        <button onclick="registerUser()">Register</button>
+        <div class="container">
+            <div id="loginDetails">
+                <label>Username:</label> <br />
+                <input type="text" id="username" placeholder="Enter Username" required><br> <br />
+                <label>Password:</label> <br />
+                <input type="password" id="password" placeholder="Enter Password" required><br> <br />
+                <label>Confirm Password:</label> <br />
+                <input type="password" id="confirm" placeholder="Renter Password" required><br>
+                <button onclick="registerUser()">Register</button>
+            </div>
+            <button id="loginButton" onclick="goToLogin()">Have an Account</button>
+            <p id="errorArea"></p>
+        </div>
     </div>
-    <p id="errorArea"></p>
-
-
-    <script src="./js/register.js"></script>
-    This page needs to capture data to create a new user account, after successful registration redirect to the index page so they can login and use the site
 </body>
 
 </html>
