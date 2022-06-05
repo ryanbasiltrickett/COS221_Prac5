@@ -14,10 +14,10 @@ function registerUser(){
     const xhttp = new XMLHttpRequest();
 
     xhttp.onload = function(){
-        // console.log(this.response);
          var data = JSON.parse(this.response);
  
          if (data.status == "success"){
+             alert("Successfully Registered");
              location.href = "./login.php";
          } else {
              error.innerText = "Username or password invalid for registration"

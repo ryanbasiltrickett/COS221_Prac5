@@ -29,8 +29,8 @@
                 <input type="password" id="confirm" placeholder="Renter Password" required><br>
                 <button onclick="registerUser()">Register</button>
             </div>
-            <p id="errorArea"></p>
             <button id="loginButton" onclick="goToLogin()">Have an Account</button>
+            <p id="errorArea"></p>
         </div>
     </div>
 </body>

@@ -59,7 +59,7 @@ class DBConnection
         //echo $GLOBALS["connection"]->error;
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $flag = $password == $row["Password"];
+            $flag = hash("sha256", $password) == $row["Password"];
             if ($flag) {
                 session_start();
                 $_SESSION["loggedIn"] = true;
@@ -79,13 +79,24 @@ class DBConnection
     //You can use these functions as examples as how to query the DB and format a response
     public function registerUser($username, $password)
     {
-        $query = "INSERT INTO login_credentials (Username, Password)";
-        $query = $query . 'VALUES ("' . $username . '", "' . $password . '")';
+        $query = "SELECT *
+                  FROM login_credentials
+                  WHERE Username = '$username';";
+        $result = $GLOBALS["connection"]->query($query);
+        
+        if ($result->num_rows == 0) {
+            $password = hash("sha256", $password);
+            $query = "INSERT INTO login_credentials (Username, Password)";
+            $query = $query . 'VALUES ("' . $username . '", "' . $password . '")';
 
-        $success = $GLOBALS["connection"]->query($query);
-        if ($success) {
-            $temp = $this->createJSONResponse("success", null);
-            return $temp;
+            $success = $GLOBALS["connection"]->query($query);
+            if ($success) {
+                $temp = $this->createJSONResponse("success", null);
+                return $temp;
+            } else {
+                $temp = $this->createJSONResponse("failure", null);
+                return $temp;
+            }
         } else {
             $temp = $this->createJSONResponse("failure", null);
             return $temp;
