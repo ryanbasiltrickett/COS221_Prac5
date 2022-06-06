@@ -23,7 +23,7 @@ require_once("php/header.php");
             <h3>Enter result details</h3>
 
             <div class="container">
-                <form method='POST' action='validate-add.php'>
+                <form>
                     <label>Swimmer 1: </label> <br />
                     <select name="swimmer1" id="swimmer1">
                     </select> <br />

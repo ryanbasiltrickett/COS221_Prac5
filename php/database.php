@@ -589,6 +589,8 @@ class DBConnection
         }
     }
 
+    
+
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
     //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
     //You can then return the result of this function
@@ -606,6 +608,240 @@ class DBConnection
         }
     }
 
+    // logging results for individual swimmers 
+    public function logIndividual($swimmer, $tournament, $event, $eventPhase, $time, $lane) {
+
+        //check if record is broken
+        $isBroken = 1;
+        $query = "SELECT `Time` FROM individual_stroke_event_stats;";
+        $results = $GLOBALS["connection"]->query($query);
+        while($rows = $results->fetch_assoc())
+        {
+            if(strtotime($time) > strtotime($rows["Time"]));
+            {
+                $isBroken = 0;
+            }
+        }
+        
+        $results = $GLOBALS["connection"]->query($query);
+
+        // inserts into individual_stroke_event_stats
+        $query = "INSERT INTO individual_stroke_event_stats (Record_Broken, lane, `Time`, Event_Phase_ID, Swimmer_ID)  
+                VALUES ($isBroken, $lane, '$time', $eventPhase, $swimmer)";
+
+        $isInserted = $GLOBALS["connection"]->query($query);
+
+        // To potentially update personal_best_individual 
+        $query = "SELECT `Time` FROM personal_best_individual WHERE Swimmer_ID = $swimmer AND StrokePB_ID = $event";
+        $results = $GLOBALS["connection"]->query($query);
+
+        if ($results->num_rows > 0) {
+            $updateIndPB = false;
+            while($rows = $results->fetch_assoc())
+            {
+                if(strtotime($time) < strtotime($rows["Time"]));
+                    $updateIndPB = true;
+            }
+
+            if($updateIndPB == true)
+            {
+                $query = "UPDATE personal_best_individual
+                    SET Time='$time'
+                    WHERE Swimmer_ID=$swimmer AND StrokePB_ID=$event;";
+
+                $GLOBALS["connection"]->query($query);
+            }
+        }
+        else{
+
+            $queryInd = "SELECT Stat_Event_ID FROM individual_stroke_event_stats
+                 WHERE Swimmer_ID = $swimmer";
+
+            $results = $GLOBALS["connection"]->query($queryInd);
+            while($row = $results->fetch_assoc())
+            {
+                $swimmerPB_ID = $row["Stat_Event_ID"];  
+            }
+
+            $query = "INSERT INTO personal_best_individual (SwimmerPB_ID, Swimmer_ID, StrokePB_ID, `Time`)
+                VALUES($swimmerPB_ID,$swimmer, $event , '$time');";
+
+            $GLOBALS["connection"]->query($query);
+            // if ($GLOBALS["connection"]->query($query) === true)
+            //     return $this->createJSONResponse("sucess", $query);
+        }
+
+        if ($isInserted === true) {            
+            return $this->createJSONResponse("success", null);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+            }
+    }
+
+public function logteam($swimmer1, $swimmer2, $swimmer3, $swimmer4, $tournament, $event, $lane, $eventPhase, $time) {
+    $isBroken = 1;
+    
+        //check if record is broke,
+        $query = "SELECT `Time` FROM team_relay_event_stats;";
+        $results = $GLOBALS["connection"]->query($query);
+        while($rows = $results->fetch_assoc())
+        {
+            if(strtotime($time) > strtotime($rows["Time"]));
+            {
+                $isBroken = 0;
+            }
+        }
+
+        $teamNames = array();
+        $teamRecieved = array();
+        $swimmersArr = array();
+
+        $teamRecieved[] = $swimmer1;
+        $teamRecieved[] = $swimmer2;
+        $teamRecieved[] = $swimmer3;
+        $teamRecieved[] = $swimmer4;
+        
+
+        for($i = 0; $i < count($teamRecieved); ++$i)
+        {
+            for($j = $i + 1; $j < count($teamRecieved); ++$j)
+            {
+                if($teamRecieved[$i] == $teamRecieved[$j])
+                {
+                  return $this->invalidTeam();
+                }
+            }
+        }
+            
+        // getting the team id of the swimmers 
+       $queryTeam = "SELECT Swimmer_id1, Swimmer_id2, Swimmer_id3, Swimmer_id4 FROM swimming_teams;";
+       $TeamPB_ID = 0;
+       $teamExists = false;
+       $resultsTeam = $GLOBALS["connection"]->query($queryTeam); 
+       if ($resultsTeam->num_rows > 0){
+            while($row = $resultsTeam->fetch_assoc())
+            {
+                $checkCount = 0;
+
+                $teamNames[] = $row["Swimmer_id1"];
+                $teamNames[] = $row["Swimmer_id2"];
+                $teamNames[] = $row["Swimmer_id3"];
+                $teamNames[] = $row["Swimmer_id4"];
+
+                for($i = 0; $i < count($teamNames); ++$i)
+                {
+                    for($j = 0; $j < count($teamRecieved); ++$j)
+                    {
+                        if($teamNames[$i] == $teamRecieved[$j])
+                        {
+                            ++$checkCount;
+                            $swimmersArr[] = $teamNames[$i]; 
+                        }
+                    }
+                }
+
+                if($checkCount == count($teamRecieved))
+                {
+                    $s1 = $swimmersArr[0];
+                    $s2 = $swimmersArr[1];
+                    $s3 = $swimmersArr[2];
+                    $s4 = $swimmersArr[3];
+
+                    $query = "SELECT Team_ID FROM swimming_teams
+                            WHERE Swimmer_id1 = $s1 AND Swimmer_id2 = $s2 AND Swimmer_id3 = $s3 AND Swimmer_id4 = $s4;";
+
+                    $results = $GLOBALS["connection"]->query($query);
+                    if($results->num_rows > 0)
+                    {
+                        while($row = $results->fetch_assoc())
+                        {
+                            $TeamPB_ID = $row["Team_ID"];
+                        }
+                    }
+                    $teamExists = true;
+                    break;
+                }
+
+                unset($teamNames);
+                unset($swimmersArr);
+            }
+        }
+
+        if($teamExists == false){
+            $query = "INSERT INTO swimming_teams (Swimmer_id1, Swimmer_id2, Swimmer_id3, Swimmer_id4, `Date_Created`)
+                    VALUES($swimmer1, $swimmer2, $swimmer3, $swimmer4, NOW())";
+            $GLOBALS["connection"]->query($query);
+
+            $query = "SELECT Team_ID FROM swimming_teams
+                    WHERE Swimmer_id1 = $swimmer1 AND Swimmer_id2 = $swimmer2 AND Swimmer_id3 = $swimmer3 AND Swimmer_id4 = $swimmer4";
+            $results = $GLOBALS["connection"]->query($query);
+
+            while($row = $results->fetch_assoc())
+            {
+                $LastElement = $row["Team_ID"];
+            }
+
+            $TeamPB_ID = $LastElement;
+        }
+
+        // inserts into team_relay_event_stats
+        $query = "INSERT INTO team_relay_event_stats (Record_Broken, Team_ID, lane, `Time`, Event_Phase_ID)  
+                VALUES ($isBroken, $TeamPB_ID, $lane, '$time', $eventPhase)";
+
+        $isInserted = $GLOBALS["connection"]->query($query);
+    
+        // update personal best for team
+        $query = "SELECT `Time` FROM personal_best_team WHERE Team_ID = $TeamPB_ID AND StrokePB_ID = $event";
+        $results = $GLOBALS["connection"]->query($query);
+
+        if ($results->num_rows > 0) {
+            $updateIndPB = false;
+            while($rows = $results->fetch_assoc())
+            {
+                if(strtotime($time) < strtotime($rows["Time"]));
+                    $updateIndPB = true;
+            }
+
+            if($updateIndPB == true)
+            {
+                $query = "UPDATE personal_best_team
+                    SET Time='$time'
+                    WHERE Team_ID=$TeamPB_ID AND StrokePB_ID=$event;";
+
+                $GLOBALS["connection"]->query($query);
+            }
+        }
+        else{
+
+            $queryInd = "SELECT Stat_Event_ID FROM team_relay_event_stats
+                 WHERE Team_ID=$TeamPB_ID;";
+            
+            $results = $GLOBALS["connection"]->query($queryInd);
+            while($row = $results->fetch_assoc())
+            {
+                $teamBest_ID = $row["Stat_Event_ID"];  
+            }
+
+            $query = "INSERT INTO personal_best_team (TeamPB_ID ,StrokePB_ID, Team_ID, `Time`)
+                VALUES($teamBest_ID ,$event, $TeamPB_ID, '$time');";
+
+            $GLOBALS["connection"]->query($query);
+        }
+
+        if ($isInserted === true) {            
+            return $this->createJSONResponse("success", null);
+        }
+        else {
+            return $this->createJSONResponse("failure", null);
+            }
+    }
+    
+    public function invalidTeam()
+    {
+        $returnJSON = json_encode(["results" => "Notteam"]);
+        return $returnJSON;
+    }
 
     //function receives json request, translates it, then calls the appropriate function using params from json object
     //the json returned by the individual functions is echo-ed as the response
@@ -683,6 +919,12 @@ class DBConnection
             echo $temp;
         } else if ($function == "getPhases") {
             $temp = $this->getPhases($params["tournamentId"], $params["eventId"]);
+            echo $temp;
+        } else if ($function == "logSwimmerResults") {
+            $temp = $this->logIndividual($params["swimmer"], $params["tournament"], $params["event"], $params["eventPhase"], $params["time"], $params["lane"]);
+            echo $temp;
+        } else if($function == "logTeamResults") {
+            $temp = $this->logteam($params["swimmer1"], $params["swimmer2"], $params["swimmer3"] , $params["swimmer4"] ,$params["tournament"], $params["event"], $params["lane"], $params["eventPhase"], $params["time"]);
             echo $temp;
         } else {
             echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);
