@@ -4,6 +4,7 @@ function loadIndividualPage()
     loadTournaments();
     loadEvents();
     loadLane();
+    loadPhases();
 }
 
 function loadTeamPage()
@@ -12,6 +13,7 @@ function loadTeamPage()
     loadTournaments();
     loadEvents();
     loadLane();
+    loadPhases();
 }
 
 function loadSwimmers(){
@@ -148,4 +150,42 @@ function loadLane(){
     }
 
     laneSelect.innerHTML = inner;
+}
+
+function loadPhases()
+{
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function(){
+         var data = JSON.parse(this.response);
+        
+         phaseDropDown = document.getElementById("phase");
+         phaseDropDown.innerHTML = "";
+
+         if (data.status == "success"){
+            let phases = data.data;
+            
+            for (let phase of phases){
+                phaseOption = document.createElement("option");
+                phaseOption.value = phase.id;
+
+                var text = phase.classification + " (" + phase.start + " - " + phase.end + ")";
+                phaseOption.text = text;
+                phaseDropDown.appendChild(phaseOption);
+            }
+         } else {
+            alert("There are no event phases added for this tournament and stroke, please add them under Manage Event Info");
+         }
+     }
+
+     params = {
+        "function": "getPhases",
+        "tournamentId" : document.getElementById("tournament").value,
+        "eventId" : document.getElementById("event").value
+    };
+    
+    strParams = JSON.stringify(params);
+    
+    xhttp.open("POST", "./php/database.php", false);
+    xhttp.send(strParams);
 }

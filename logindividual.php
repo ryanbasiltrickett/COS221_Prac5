@@ -29,17 +29,18 @@
                 <label>Swimmer: </label>   <br/>
                 <select name="swimmer" id="swimmer">
                 </select> <br/>
-                <label>Tournment: </label>   <br/>
-                <select name="tournament" id="tournament">
+                <label>Tournament: </label>   <br/>
+                <select name="tournament" id="tournament" onChange="loadPhases()">
                 </select> <br/>
                 <label>Event: </label>   <br/>
-                <select name="event" id="event">
+                <select name="event" id="event" onChange="loadPhases()">
                 </select> <br/>
                 <label>Swimming Lane: </label>   <br/>
                 <select name="lane" id="lane">
                 </select> <br/>
                 <label>Event Phase: </label>   <br/>
-                <input type="text" placeholder="Enter Event Phase Of Tournment " name="event"> <br/>
+                <select name="phase" id="phase">
+                </select> <br/>
                 <label>Time: </label>   <br/>
                 <input type="text" id="time" placeholder="mm:ss:mm" name="time"> <br/>
                 <button onclick="addIndividualResult()" type="submit">Add Results</button>   <br/>

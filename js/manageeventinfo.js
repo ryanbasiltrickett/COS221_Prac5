@@ -273,3 +273,82 @@ function addTournament()
     xhttp.open("POST", "./php/database.php", false);
     xhttp.send(strParams);
 }
+
+function loadEventPhasePage()
+{
+    loadTournaments();
+    loadEvents();
+}
+
+function loadEvents(){
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function(){
+        
+         var data = JSON.parse(this.response);
+ 
+         if (data.status == "success"){
+            let events = data.data;
+            eventsDropDown = document.getElementById("event");
+            for (let event of events){
+                eventOption = document.createElement("option");
+                eventOption.value = event.id;
+
+                var fullName = event.dist +"m "+event.name+" ("+event.gender+")";
+                eventOption.text = fullName;
+                eventsDropDown.appendChild(eventOption);
+            }
+         } else {
+            console.log("Could not retrieve event data");
+         }
+     }
+
+     params = {
+        "function": "getEvents"
+    };
+    
+    strParams = JSON.stringify(params);
+    
+    xhttp.open("POST", "./php/database.php", false);
+    xhttp.send(strParams);
+}
+
+function addPhase()
+{
+    phase = document.getElementById("phase").value.trim();
+    start = document.getElementById("start").value;
+    end = document.getElementById("end").value;
+    date = document.getElementById("date").value;
+
+    if (phase == "" || start == "" || end == "" || date == "")
+        return;
+
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function(){
+        alert(this.response);
+        var data = JSON.parse(this.response);
+
+        if (data.status == "success"){
+            alert("Tournament event phase added successfully");
+        }
+        else {
+            alert("Error occured when adding tournament event phase");
+        }
+    }
+
+    params = {
+        "function": "addPhase",
+        "phase" : phase,
+        "tournamentId" : document.getElementById("tournament").value,
+        "eventId" : document.getElementById("event").value,
+        "date" : date,
+        "start" : start,
+        "end" : end
+    };
+    
+    strParams = JSON.stringify(params);
+    
+    xhttp.open("POST", "./php/database.php", false);
+    xhttp.send(strParams);
+}

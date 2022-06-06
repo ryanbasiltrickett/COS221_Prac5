@@ -46,7 +46,8 @@
                     <select name="lane" id="lane">
                     </select> <br/>
                     <label>Event Phase: </label>   <br/>
-                    <input type="text" placeholder="Enter Event Phase Of Tournment " name="event"> <br/>
+                    <select name="phase" id="phase">
+                    </select> <br/>
                     <label>Time: </label> <br />
                     <input type="text" id="time" placeholder="mm:ss:mm" name="time"> <br />
                     <button onclick="addTeamResult()" type="submit">Add Results</button> <br />
