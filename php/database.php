@@ -613,11 +613,12 @@ class DBConnection
 
         //check if record is broken
         $isBroken = 1;
+
         $query = "SELECT `Time` FROM individual_stroke_event_stats;";
         $results = $GLOBALS["connection"]->query($query);
         while($rows = $results->fetch_assoc())
         {
-            if(strtotime($time) > strtotime($rows["Time"]));
+            if(strtotime($time) > strtotime($rows["Time"]))
             {
                 $isBroken = 0;
             }
@@ -667,8 +668,6 @@ class DBConnection
                 VALUES($swimmerPB_ID,$swimmer, $event , '$time');";
 
             $GLOBALS["connection"]->query($query);
-            // if ($GLOBALS["connection"]->query($query) === true)
-            //     return $this->createJSONResponse("sucess", $query);
         }
 
         if ($isInserted === true) {            
@@ -687,7 +686,7 @@ public function logteam($swimmer1, $swimmer2, $swimmer3, $swimmer4, $tournament,
         $results = $GLOBALS["connection"]->query($query);
         while($rows = $results->fetch_assoc())
         {
-            if(strtotime($time) > strtotime($rows["Time"]));
+            if(strtotime($time) > strtotime($rows["Time"]))
             {
                 $isBroken = 0;
             }
@@ -702,7 +701,6 @@ public function logteam($swimmer1, $swimmer2, $swimmer3, $swimmer4, $tournament,
         $teamRecieved[] = $swimmer3;
         $teamRecieved[] = $swimmer4;
         
-
         for($i = 0; $i < count($teamRecieved); ++$i)
         {
             for($j = $i + 1; $j < count($teamRecieved); ++$j)
