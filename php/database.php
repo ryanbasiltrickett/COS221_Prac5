@@ -404,6 +404,19 @@ class DBConnection
         }
     }
 
+    public function addPhase($tournamentId, $eventId, $phase, $date, $start, $end)
+    {
+        $query = "INSERT into tournament_event_phases
+                  (Tournament_ID, Stroke_Event_ID, Classification, Date, Start_Time, End_Time)
+                  VALUES($tournamentId, $eventId, '$phase', '$date', '$start', '$end')";
+
+        if ($GLOBALS["connection"]->query($query) === true) {
+            return $this->createJSONResponse("success", null);
+        } else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
     //Uploads media to the database
     public function uploadMedia($id, $file)
     {
@@ -552,6 +565,30 @@ class DBConnection
         }
     }
 
+    // Returns all event phases for a tournament
+    public function getPhases($tournamentId, $eventId)
+    {
+        $query = "SELECT Tourn_Event_Phase_ID, Classification, Start_Time, End_Time
+                  FROM tournament_event_phases
+                  WHERE Tournament_ID = $tournamentId AND Stroke_Event_ID = $eventId;";
+
+        $result = $GLOBALS["connection"]->query($query);
+        if ($result->num_rows > 0) {
+            $returnArr = [];
+            $counter = 0;
+            while ($row = $result->fetch_assoc()) {
+                $returnArr[$counter]["id"] = $row["Tourn_Event_Phase_ID"];
+                $returnArr[$counter]["classification"] = $row["Classification"];
+                $returnArr[$counter]["start"] = $row["Start_Time"];
+                $returnArr[$counter]["end"] = $row["End_Time"];
+                $counter++;
+            }
+            return $this->createJSONResponse("success", $returnArr);
+        } else {
+            return $this->createJSONResponse("failure", null);
+        }
+    }
+
     // You can use this function to turn your data into a JSON response fit for the front end, I think (but really hope) it works
     //assocArr is an array of associative arrays, so for example assocArr[5]["name"] should return the 'name' attribute of the 6th item
     //You can then return the result of this function
@@ -640,6 +677,12 @@ class DBConnection
             echo $temp;
         } else if ($function == "addTournament") {
             $temp = $this->addTournament($params["name"], $params["start"], $params["end"]);
+            echo $temp;
+        } else if ($function == "addPhase") {
+            $temp = $this->addPhase($params["tournamentId"], $params["eventId"], $params["phase"], $params["date"], $params["start"], $params["end"]);
+            echo $temp;
+        } else if ($function == "getPhases") {
+            $temp = $this->getPhases($params["tournamentId"], $params["eventId"]);
             echo $temp;
         } else {
             echo json_encode(["status" => "invalid function", "timestamp" => time(), "data" => null]);

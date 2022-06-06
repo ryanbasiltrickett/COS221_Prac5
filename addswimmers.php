@@ -12,10 +12,10 @@
 
 <div class="manageSwimmer-image">
     <?php
-        session_start();
-        $_SESSION["page"] = "addswimmers";
-        require_once("php/header.php");
-    ?>   
+    session_start();
+    $_SESSION["page"] = "manageswimmers";
+    require_once("php/header.php");
+    ?>
 </div>
 
 <body>
@@ -25,18 +25,18 @@
 
         <div class="container">
             <form>
-                <label>First Name: </label>   <br/>
-                <input type="text" placeholder="Enter Swimmer First Name" name="fname" required id="fname"> <br/>
-                <label>Middle Name: </label>   <br/>
-                <input type="text" placeholder="Enter Swimmer Middle Name" name="mname" id="mname"> <br/>
-                <label>Last Name: </label>   <br/>
-                <input type="text" placeholder="Enter Swimmer Last Name" name="lname" required id="lname"> <br/>
-                <label>ID Number: </label> <br/>
-                <input type="text" placeholder="Enter Swimmer ID Number" name="id" required id="id">  <br/>
-                <label>Date of Birth: </label>   <br/>
-                <input type="date" id="date" placeholder="dd-mm-yyyy" min="1973-01-01" max="2003-12-31" name="date"> <br/>
-                <button onclick="addSwimmer()" type="submit">Add</button>   <br/>
-            </form>                  
+                <label>First Name: </label> <br />
+                <input type="text" placeholder="Enter Swimmer First Name" name="fname" required id="fname"> <br />
+                <label>Middle Name: </label> <br />
+                <input type="text" placeholder="Enter Swimmer Middle Name" name="mname" id="mname"> <br />
+                <label>Last Name: </label> <br />
+                <input type="text" placeholder="Enter Swimmer Last Name" name="lname" required id="lname"> <br />
+                <label>ID Number: </label> <br />
+                <input type="text" placeholder="Enter Swimmer ID Number" name="id" required id="id"> <br />
+                <label>Date of Birth: </label> <br />
+                <input type="date" id="date" placeholder="dd-mm-yyyy" min="1973-01-01" max="2003-12-31" name="date"> <br />
+                <button onclick="addSwimmer()" type="submit">Add</button> <br />
+            </form>
         </div>
     </div>
 </body>

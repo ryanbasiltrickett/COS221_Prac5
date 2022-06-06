@@ -28,6 +28,7 @@
             <a href="updatelocations.php"> <button id = "updateLocation" type="button">Update Location</button></a>
             <a href="addtournaments.php"> <button id = "addTournament" type="button">Add Tournament</button></a>
             <a href="updatetournaments.php"> <button id = "updateTournament" type="button">Update Tournament</button></a>
+            <a href="addeventphase.php"> <button id = "addeventphase" type="button">Add Event Phase</button></a>
         </div>
     </div>    
 </body>

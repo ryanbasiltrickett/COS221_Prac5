@@ -58,7 +58,7 @@ function loadPB(){
         }
         else {
 
-            alert("Error occured when obtaining swimmer's stats");
+           
             pb.innerHTML = "";
             pbLabel.innerHTML="";
         }
@@ -98,7 +98,7 @@ function loadEvents(){
         }
         else {
 
-            alert("Error occured when obtaining swimmer's stats");
+            
             pb.innerHTML = "";
             pbLabel.innerHTML="";
         }

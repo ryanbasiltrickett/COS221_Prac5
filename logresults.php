@@ -22,7 +22,7 @@
 
     <div class="credentials">
         <h1>Log Results</h1>
-        <h3>Please log results for individual swimmers or team</h3>
+        <h3>Please log results for individual swimmers or teams</h3>
 
         <div id="main-buttons">
             <a href="logindividual.php"> <button id="logPersonal" type="button">Individual Swimmer</button></a> <br>
