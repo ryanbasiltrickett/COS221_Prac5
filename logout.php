@@ -14,6 +14,9 @@
         <div class="content">
             <h1>Thank you for using Swim Stats!</h1>
             <img src="img/logo_1.png" alt="Project Logo" class="logo">
+            <h3>A proud product of Team.exe</h3>
+            
+            <a href="index.php"> <button type="button">Return</button></a>
         </div>
     </div>
     
