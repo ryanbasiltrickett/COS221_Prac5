@@ -12,9 +12,9 @@
 
 <div class="manageEventInfo-image">
     <?php
-        session_start();
-        $_SESSION["page"] = "addtournaments";
-        require_once("php/header.php");
+    session_start();
+    $_SESSION["page"] = "manageeventinfo";
+    require_once("php/header.php");
     ?>
 </div>
 
@@ -24,15 +24,15 @@
         <h3>Enter the details of the tournament to be added</h3>
 
         <div class="container">
-            <form>  
-                <label>Name: </label> <br/>
-                <input type="text" placeholder="Enter Tournament Name" id="name" required> <br/>
-                <label>Start Date: </label>   <br/>
-                <input type="date" placeholder="dd-mm-yyyy" id="start" required> <br/>
-                <label>End Date: </label>   <br/>
-                <input type="date" placeholder="dd-mm-yyyy" id="end" required> <br/>
-                <button onclick="addTournament()" type="submit">Add</button>   <br/>
-            </form>                
+            <form>
+                <label>Name: </label> <br />
+                <input type="text" placeholder="Enter Tournament Name" id="name" required> <br />
+                <label>Start Date: </label> <br />
+                <input type="date" placeholder="dd-mm-yyyy" id="start" required> <br />
+                <label>End Date: </label> <br />
+                <input type="date" placeholder="dd-mm-yyyy" id="end" required> <br />
+                <button onclick="addTournament()" type="submit">Add</button> <br />
+            </form>
         </div>
     </div>
 </body>

@@ -12,9 +12,9 @@
 
 <div class="manageSwimmer-image">
     <?php
-        session_start();
-        $_SESSION["page"] = "deleteswimmers";
-        require_once("php/header.php");
+    session_start();
+    $_SESSION["page"] = "manageswimmers";
+    require_once("php/header.php");
     ?>
 </div>
 
@@ -24,12 +24,12 @@
         <h3>Choose the swimmer to be deleted</h3>
 
         <div class="container">
-            <form>  
-                <label>Swimmer: </label> <br/>
+            <form>
+                <label>Swimmer: </label> <br />
                 <select name="swimmer" id="swimmer">
-                </select> <br/>
-                <button onclick="deleteSwimmer()" type="submit">Delete</button><br/>
-            </form>                
+                </select> <br />
+                <button onclick="deleteSwimmer()" type="submit">Delete</button><br />
+            </form>
         </div>
     </div>
 </body>

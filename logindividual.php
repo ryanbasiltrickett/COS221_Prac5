@@ -12,9 +12,9 @@
 
 <div class="logResults-image">
     <?php
-        session_start();
-        $_SESSION["page"] = "logindividual";
-        require_once("php/header.php");
+    session_start();
+    $_SESSION["page"] = "logresults";
+    require_once("php/header.php");
     ?>
 </div>
 
@@ -25,26 +25,26 @@
         <h3>Enter result details</h3>
 
         <div class="container">
-            <form>  
-                <label>Swimmer: </label>   <br/>
+            <form>
+                <label>Swimmer: </label> <br />
                 <select name="swimmer" id="swimmer">
-                </select> <br/>
-                <label>Tournament: </label>   <br/>
+                </select> <br />
+                <label>Tournament: </label> <br />
                 <select name="tournament" id="tournament" onChange="loadPhases()">
-                </select> <br/>
-                <label>Event: </label>   <br/>
+                </select> <br />
+                <label>Event: </label> <br />
                 <select name="event" id="event" onChange="loadPhases()">
-                </select> <br/>
-                <label>Swimming Lane: </label>   <br/>
+                </select> <br />
+                <label>Swimming Lane: </label> <br />
                 <select name="lane" id="lane">
-                </select> <br/>
-                <label>Event Phase: </label>   <br/>
+                </select> <br />
+                <label>Event Phase: </label> <br />
                 <select name="phase" id="phase">
-                </select> <br/>
-                <label>Time: </label>   <br/>
-                <input type="text" id="time" placeholder="mm:ss:mm" name="time"> <br/>
-                <button onclick="addIndividualResult()" type="submit">Add Results</button>   <br/>
-            </form>                
+                </select> <br />
+                <label>Time: </label> <br />
+                <input type="text" id="time" placeholder="mm:ss:ms" name="time"> <br />
+                <button onclick="addIndividualResult()" type="submit">Add Results</button> <br />
+            </form>
         </div>
     </div>
 </body>

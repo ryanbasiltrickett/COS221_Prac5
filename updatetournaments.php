@@ -12,9 +12,9 @@
 
 <div class="manageEventInfo-image">
     <?php
-        session_start();
-        $_SESSION["page"] = "updatetournaments";
-        require_once("php/header.php");
+    session_start();
+    $_SESSION["page"] = "manageeventinfo";
+    require_once("php/header.php");
     ?>
 </div>
 
@@ -24,18 +24,18 @@
         <h3>Enter the updated credentials of the tournament</h3>
 
         <div class="container">
-            <form>  
-                <label>Tournment: </label>   <br/>
+            <form>
+                <label>Tournment: </label> <br />
                 <select name="tournament" id="tournament" onChange="loadTournamentDetails()">
-                </select> <br/>
-                <label>Name: </label> <br/>
-                <input type="text" placeholder="Enter Tournament Name" id="name" required> <br/>
-                <label>Start Date: </label>   <br/>
-                <input type="date" placeholder="dd-mm-yyyy" id="start" required> <br/>
-                <label>End Date: </label>   <br/>
-                <input type="date" placeholder="dd-mm-yyyy" id="end" required> <br/>
-                <button onclick="updateTournament()" type="submit">Update</button>   <br/>
-            </form>                
+                </select> <br />
+                <label>Name: </label> <br />
+                <input type="text" placeholder="Enter Tournament Name" id="name" required> <br />
+                <label>Start Date: </label> <br />
+                <input type="date" placeholder="dd-mm-yyyy" id="start" required> <br />
+                <label>End Date: </label> <br />
+                <input type="date" placeholder="dd-mm-yyyy" id="end" required> <br />
+                <button onclick="updateTournament()" type="submit">Update</button> <br />
+            </form>
         </div>
     </div>
 </body>

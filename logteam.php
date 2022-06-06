@@ -11,9 +11,9 @@
 </head>
 
 <?php
-    session_start();
-    $_SESSION["page"] = "logteam";
-    require_once("php/header.php");
+session_start();
+$_SESSION["page"] = "logresults";
+require_once("php/header.php");
 ?>
 
 <body onLoad="loadTeamPage()">
@@ -39,17 +39,17 @@
                     <label>Tournment: </label> <br />
                     <select name="tournament" id="tournament">
                     </select> <br />
-                    <label>Event: </label>   <br/>
+                    <label>Event: </label> <br />
                     <select name="event" id="event">
-                    </select> <br/>
-                    <label>Swimming Lane: </label>   <br/>
+                    </select> <br />
+                    <label>Swimming Lane: </label> <br />
                     <select name="lane" id="lane">
-                    </select> <br/>
-                    <label>Event Phase: </label>   <br/>
+                    </select> <br />
+                    <label>Event Phase: </label> <br />
                     <select name="phase" id="phase">
-                    </select> <br/>
+                    </select> <br />
                     <label>Time: </label> <br />
-                    <input type="text" id="time" placeholder="mm:ss:mm" name="time"> <br />
+                    <input type="text" id="time" placeholder="mm:ss:ms" name="time"> <br />
                     <button onclick="addTeamResult()" type="submit">Add Results</button> <br />
                 </form>
             </div>
