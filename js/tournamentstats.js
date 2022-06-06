@@ -58,7 +58,7 @@ function loadTournamentStats(){
         }
         else {
 
-            alert("Error occured when obtaining swimmer's stats");
+        
             pb.innerHTML = "";
             pbLabel.innerHTML="";
         }
