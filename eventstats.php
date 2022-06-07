@@ -34,61 +34,10 @@
     </div>
 
 
-    <div id="resultsArea">
-        <div class="gridCell">
-            <p class="gridTitle">Rank</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridTitle">Swimmer</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridTitle">Time</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">1</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">Dave Davidson</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">00:40:38</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">2</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">Dave Davidson</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">00:40:38</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">3</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">Dave Davidson</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">00:40:38</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">4</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">Dave Davidson</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">00:40:38</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">5</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">Dave Davidson</p>
-        </div>
-        <div class="gridCell">
-            <p class="gridContent">00:40:38</p>
-        </div>
+    <div class="statsarea">
+        <table id="resultsArea">
+            
+        </table>
     </div>
 
     <script src="./js/eventstats.js"></script>

@@ -144,15 +144,6 @@ select {
     background-color: darkblue;
 }
 
-#resultsArea{
-    position: absolute;
-    display: none;
-    grid-template-columns: 1fr 1fr 1fr;
-    top: 55%;
-    margin-left: 39%;
- 
-}
-
 .gridCell{
     display: none;
     background-color: white;

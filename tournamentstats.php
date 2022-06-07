@@ -11,9 +11,9 @@
 </head>
 
 <?php
-session_start();
-$_SESSION["page"] = "tournamentstats";
-require_once("php/header.php");
+    session_start();
+    $_SESSION["page"] = "tournamentstats";
+    require_once("php/header.php");
 ?>
 
 <body onLoad="loadTournaments()" id="page">
@@ -32,9 +32,6 @@ require_once("php/header.php");
     </div>
 
     <div class="statsarea">
-
-        <label id="tournStatLabel"> </label> <br/>
-
         <table id="tournamentStats">
                 
         </table>
