@@ -11,23 +11,27 @@
 </head>
 
 <?php
-session_start();
-$_SESSION["page"] = "viewstatistics";
-require_once("php/header.php");
+    session_start();
+    $_SESSION["page"] = "tournamentstats";
+    require_once("php/header.php");
 ?>
 
-<body onLoad="loadUpdate()">
-    <div class="tournStats-image">
+<body onLoad="loadTournaments()" id="page">
+    <div class="titlediv">
         <h1>Review Tournament Statistics</h1>
-        <div id="tournStats">
-        <label>Tournament: </label> 
-        <select name="tournament" id="tournament" onChange="loadTournamentStats()"></select>
-        <br/>
-        <br/>
-        <br/>
+        <h3>Choose a Tournament</h3>
 
-        <label id="tournStatLabel"> </label> <br/>
+        <div class="container">
 
+            <label>Tournament: </label> <br />
+            <select name="tournament" id="tournament"></select>
+            </select> <br />
+            <button onclick="loadTournamentStats()">View</button> <br />
+
+        </div>
+    </div>
+
+    <div class="statsarea">
         <table id="tournamentStats">
                 
         </table>

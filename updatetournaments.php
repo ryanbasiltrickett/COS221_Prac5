@@ -13,12 +13,12 @@
 <div class="manageEventInfo-image">
     <?php
     session_start();
-    $_SESSION["page"] = "manageeventinfo";
+    $_SESSION["page"] = "updatetournament";
     require_once("php/header.php");
     ?>
 </div>
 
-<body onLoad="loadTournaments()">
+<body onLoad="loadTournamentsPage()">
     <div class="credentials">
         <h1>Update Tournament</h1>
         <h3>Enter the updated credentials of the tournament</h3>

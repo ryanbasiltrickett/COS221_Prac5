@@ -1,11 +1,3 @@
-function loadUpdate()
-{
-    
-    loadSwimmers();
-    loadPB();
-    
-}
-
 function loadSwimmers(){
     const xhttp = new XMLHttpRequest();
 
@@ -54,14 +46,15 @@ function loadPB(){
             
             }
             pb.innerHTML = inner;
-            loadEvents();
         }
         else {
-
+            alert("No data available for selected swimmer");
            
             pb.innerHTML = "";
             pbLabel.innerHTML="";
         }
+
+        loadEvents();
     }
 
     params = {

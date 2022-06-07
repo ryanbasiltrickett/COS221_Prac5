@@ -12,7 +12,7 @@
 
 <?php
 session_start();
-$_SESSION["page"] = "logresults";
+$_SESSION["page"] = "logteam";
 require_once("php/header.php");
 ?>
 
@@ -23,7 +23,7 @@ require_once("php/header.php");
             <h3>Enter result details</h3>
 
             <div class="container">
-                <form method='POST' action='validate-add.php'>
+                <form>
                     <label>Swimmer 1: </label> <br />
                     <select name="swimmer1" id="swimmer1">
                     </select> <br />
@@ -37,10 +37,10 @@ require_once("php/header.php");
                     <select name="swimmer4" id="swimmer4">
                     </select> <br />
                     <label>Tournment: </label> <br />
-                    <select name="tournament" id="tournament">
+                    <select name="tournament" id="tournament" onChange="loadPhases()">
                     </select> <br />
                     <label>Event: </label> <br />
-                    <select name="event" id="event">
+                    <select name="event" id="event" onChange="loadPhases()">
                     </select> <br />
                     <label>Swimming Lane: </label> <br />
                     <select name="lane" id="lane">

@@ -10,28 +10,20 @@ function getTopFive(){
  
          if (data.status == "success"){
             var swimmers = data.data;
-            document.getElementById("resultsArea").style.display = "grid";
-            var cells = document.getElementsByClassName("gridCell");
-            var contents = document.getElementsByClassName("gridContent");
-            cells[0].style.display = "block";
-            cells[1].style.display = "block";
-            cells[2].style.display = "block";
-
-            var counter = 3;
-            var rank = 1;
-            var contentCounter = 0;
+            table = document.getElementById("resultsArea");
+            inner = "<tr>   <th>Rank</th>  <th>Swimmer</th>  <th>Time</th></tr>";
+            
+            rank = 1;
             for (let swimmer of swimmers){
-                cells[counter++].style.display = "block";
-                cells[counter++].style.display = "block";
-                cells[counter++].style.display = "block";
-                contents[contentCounter++].innerText = rank++;
-                contents[contentCounter++].innerText = swimmer.name;
-                contents[contentCounter++].innerText = swimmer.time;
+                console.log("For loop");
+                rank++;
+                inner+="<tr><td>"+ rank +"</td><td>"+ swimmer.name +"</td><td>"+ swimmer.time +"</td></tr>";
             }
-            console.log(swimmers);
+            console.log(swimmers); 
+            table.innerHTML = inner;
          } else {
             document.getElementById("resultsArea").style.display = "none";
-            alert("No data found for this event");
+            alert("No data available for selected event");
          }
      }
 
@@ -82,16 +74,7 @@ function getEvents(){
 }
 
 function clearTable(){
-    var cells = document.getElementsByClassName("gridCell");
-    var contents = document.getElementsByClassName("gridContent");
-
-    for (let cell of cells){
-        cell.style.display = "none";
-    }
-
-    for (let content of contents){
-        content.innerText = "";
-    }
+    document.getElementById("resultsArea").innerHTML = "";
 }
 
 getEvents();
