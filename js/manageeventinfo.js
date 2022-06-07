@@ -78,6 +78,7 @@ function addLocation() {
     const xhttp = new XMLHttpRequest();
 
     xhttp.onload = function() {
+        //alert(this.response);
         var data = JSON.parse(this.response);
 
         if (data.status == "success") {

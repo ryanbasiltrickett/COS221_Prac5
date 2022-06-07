@@ -22,9 +22,9 @@
         <h3>What statistics would you like to view?</h3>
 
         <div id="main-buttons">
-            <a href="individualstats.php"> <button type="button">View Individual Swimmer Stats</button></a>
-            <a href="eventstats.php"> <button type="button">View Event Stats</button></a>
-            <a href="tournamentstats.php"> <button type="button">View Tournament Stats</button></a>
+            <a href="individualstats.php"> <button type="button">Individual Swimmer Stats</button></a>
+            <a href="eventstats.php"> <button type="button">Event Stats</button></a>
+            <a href="tournamentstats.php"> <button type="button">Tournament Stats</button></a>
         </div>
     </div>
 
