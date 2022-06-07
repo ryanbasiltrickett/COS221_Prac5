@@ -1,11 +1,3 @@
-function loadUpdate()
-{
-    
-    loadTournaments();
-    loadTournamentStats();
-    
-}
-
 function loadTournaments(){
     const xhttp = new XMLHttpRequest();
 
@@ -44,7 +36,6 @@ function loadTournamentStats(){
         pb = document.getElementById("tournamentStats");
         pbLabel = document.getElementById("tournStatLabel");
         if (data.status == "success"){
-            pbLabel.innerHTML="Tournaments Events:";
             inner = "<tr>   <th>Stroke</th>  <th>Distance</th>  <th>Date</th> <th>Classification</th> <th>Winner</th> <th>Time</th></tr>";
             var arr = (data.data[0]);
            
@@ -57,7 +48,7 @@ function loadTournamentStats(){
             pb.innerHTML = inner;
         }
         else {
-
+            alert("No data available for selected tournament");
         
             pb.innerHTML = "";
             pbLabel.innerHTML="";

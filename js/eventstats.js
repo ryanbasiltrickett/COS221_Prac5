@@ -31,7 +31,7 @@ function getTopFive(){
             console.log(swimmers);
          } else {
             document.getElementById("resultsArea").style.display = "none";
-            alert("No data found for this event");
+            alert("No data available for selected event");
          }
      }
 

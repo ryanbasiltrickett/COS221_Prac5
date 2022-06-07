@@ -16,26 +16,30 @@
     require_once("php/header.php");
 ?>
 
-<body onLoad="loadUpdate()">
-    <div class="individualStats-image">
+<body onLoad="loadSwimmers()" id="page">
+    <div class="titlediv">
         <h1>Review Statistics For An Individual Swimmer</h1>
-        <div id="swimmerStats">
-            <label>Swimmer: </label> 
-        
-            <select name="swimmer" id="swimmer" onChange="loadPB()">
+        <h3>Choose a Swimmer</h3>
+
+        <div class="container">
+
+            <label>Swimmer: </label>  <br />
+            <select name="swimmer" id="swimmer">
             </select>
-            <br/>
-            <br/>
-            <br/>
-            <label id="pbLabel"> </label> <br/>
-            <table id ="PBs">
-            
-            </table>
-            <label id="eventLabel"> </label> <br/>
-            <table id ="events">
-            
-            </table>
+            <button onclick="loadPB()">View</button> <br />
+
         </div>
+    </div>
+
+    <div class="statsarea">
+        <label id="pbLabel"> </label> <br/>
+        <table id ="PBs">
+            
+        </table> </br> </br>
+        <label id="eventLabel"> </label> <br/>
+        <table id ="events">
+            
+        </table>
     </div>
 </body>
 

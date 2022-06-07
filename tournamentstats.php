@@ -16,15 +16,22 @@ $_SESSION["page"] = "tournamentstats";
 require_once("php/header.php");
 ?>
 
-<body onLoad="loadUpdate()">
-    <div class="tournStats-image">
+<body onLoad="loadTournaments()" id="page">
+    <div class="titlediv">
         <h1>Review Tournament Statistics</h1>
-        <div id="tournStats">
-        <label>Tournament: </label> 
-        <select name="tournament" id="tournament" onChange="loadTournamentStats()"></select>
-        <br/>
-        <br/>
-        <br/>
+        <h3>Choose a Tournament</h3>
+
+        <div class="container">
+
+            <label>Tournament: </label> <br />
+            <select name="tournament" id="tournament"></select>
+            </select> <br />
+            <button onclick="loadTournamentStats()">View</button> <br />
+
+        </div>
+    </div>
+
+    <div class="statsarea">
 
         <label id="tournStatLabel"> </label> <br/>
 
