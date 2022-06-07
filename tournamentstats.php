@@ -12,7 +12,7 @@
 
 <?php
 session_start();
-$_SESSION["page"] = "viewstatistics";
+$_SESSION["page"] = "tournamentstats";
 require_once("php/header.php");
 ?>
 

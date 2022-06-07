@@ -3,6 +3,11 @@ function loadUpdate() {
     loadDetails();
 }
 
+function loadTournamentsPage()
+{
+    loadTournaments();
+    loadTournamentDetails();
+}
 
 function loadLocations() {
     const xhttp = new XMLHttpRequest();
@@ -152,7 +157,6 @@ function loadTournaments() {
             }
 
             tournamentSelect.innerHTML = inner;
-            loadTournamentDetails();
         }
     }
 

@@ -54,7 +54,6 @@ function loadPB(){
             
             }
             pb.innerHTML = inner;
-            loadEvents();
         }
         else {
 
@@ -62,6 +61,8 @@ function loadPB(){
             pb.innerHTML = "";
             pbLabel.innerHTML="";
         }
+
+        loadEvents();
     }
 
     params = {

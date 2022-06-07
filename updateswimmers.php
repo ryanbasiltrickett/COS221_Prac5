@@ -13,7 +13,7 @@
 <div class="manageSwimmer-image">
     <?php
     session_start();
-    $_SESSION["page"] = "manageswimmers";
+    $_SESSION["page"] = "updateswimmers";
     require_once("php/header.php");
     ?>
 </div>

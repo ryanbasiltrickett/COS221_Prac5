@@ -13,7 +13,7 @@
 <div class="logResults-image">
     <?php
     session_start();
-    $_SESSION["page"] = "logresults";
+    $_SESSION["page"] = "logindividual";
     require_once("php/header.php");
     ?>
 </div>

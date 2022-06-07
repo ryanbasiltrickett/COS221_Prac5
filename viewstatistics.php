@@ -16,8 +16,6 @@
     require_once("php/header.php");
 ?>
 
-
-
 <body id="page">
     <div class="credentials">
         <h1>View statistics</h1>

@@ -13,7 +13,7 @@
 <div class="manageEventInfo-image">
     <?php
     session_start();
-    $_SESSION["page"] = "manageeventinfo";
+    $_SESSION["page"] = "addtournament";
     require_once("php/header.php");
     ?>
 </div>
