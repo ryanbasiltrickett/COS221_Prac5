@@ -37,10 +37,10 @@ require_once("php/header.php");
                     <select name="swimmer4" id="swimmer4">
                     </select> <br />
                     <label>Tournment: </label> <br />
-                    <select name="tournament" id="tournament">
+                    <select name="tournament" id="tournament" onChange="loadPhases()">
                     </select> <br />
                     <label>Event: </label> <br />
-                    <select name="event" id="event">
+                    <select name="event" id="event" onChange="loadPhases()">
                     </select> <br />
                     <label>Swimming Lane: </label> <br />
                     <select name="lane" id="lane">

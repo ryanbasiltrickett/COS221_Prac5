@@ -33,6 +33,7 @@ require_once("php/header.php");
         </div>
     </div>
 
+
     <div id="resultsArea">
         <div class="gridCell">
             <p class="gridTitle">Rank</p>
@@ -89,6 +90,8 @@ require_once("php/header.php");
             <p class="gridContent">00:40:38</p>
         </div>
     </div>
+
+
 
 
     <script src="./js/eventstats.js"></script>
